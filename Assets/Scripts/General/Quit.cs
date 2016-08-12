@@ -1,0 +1,24 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Quit : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+	void OnTriggerEnter (Collider col)
+	{
+		//if (col.tag == "quit") {
+		//	Debug.Log ("quit");
+		//	col.gameObject.SetActive (false);
+		//	Application.Quit();
+		//}
+	}
+}
