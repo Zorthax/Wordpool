@@ -34,7 +34,7 @@ public class FirstPersonController : MonoBehaviour {
     Vector3 yMovement;
     float zMovement;
 
-    Vector3 gravityDirection;
+    public Vector3 gravityDirection = new Vector3(0, -1, 0);
     Transform cameraTransform;
     Rigidbody rb;
 
@@ -43,7 +43,9 @@ public class FirstPersonController : MonoBehaviour {
         Cursor.visible = showCursor;
         if (!showCursor) Cursor.lockState = CursorLockMode.Locked;
 
-        gravityDirection = new Vector3(0, -1, 0);
+        //gravityDirection = new Vector3(0, 0, 1);
+        transform.up = gravityDirection;
+        //transform.rotation = Quaternion.Euler(gravityDirection * 90);
         cameraTransform = this.gameObject.transform.GetChild(0);
         cameraTransform.forward = transform.forward;
 
@@ -56,9 +58,10 @@ public class FirstPersonController : MonoBehaviour {
         GroundCheck();
         CameraMovement();
         PlayerMovement();
+        
 
         //Keep camera at player position
-        cameraTransform.localPosition = CameraBobHeight();
+        cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.1f);
         
     }
 
@@ -70,14 +73,14 @@ public class FirstPersonController : MonoBehaviour {
             {
                 bobEvening = Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed));
                 if (Input.GetButton("Sprint") && grounded)
-                    return new Vector3(0, Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed * sprintMultiplier)) * bobbingHeight, 0);
+                    return MultiplyByGravity(Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed * sprintMultiplier)) * bobbingHeight);
                 else
-                    return new Vector3(0, Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed)) * bobbingHeight, 0);
+                    return MultiplyByGravity(Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed)) * bobbingHeight);
             }
             else if (bobEvening > 0.1f)
             {
                 //bobEvening *= 0.98f;
-                return new Vector3(0, bobEvening * bobbingHeight, 0);
+                return MultiplyByGravity(bobEvening * bobbingHeight);
             }
         }
 
@@ -87,16 +90,17 @@ public class FirstPersonController : MonoBehaviour {
     void GroundCheck()
     {
         //Raycast downwards
-        float distToGround = 1.0f;
-        grounded = Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.2f);
+        float distToGround = 1.2f;
+        grounded = Physics.Raycast(transform.position, gravityDirection, distToGround);
         
     }
 
     void PlayerMovement()
     {
         //Jumping
-        yMovement = CurrentUpVelocity();
-        if (grounded && Input.GetButtonDown("Jump")) yMovement = -gravityDirection * jumpPower;
+        if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
+        else yMovement = CurrentUpVelocity();
+        
 
         //Walking
         xMovement = Input.GetAxis("Horizontal");
@@ -119,13 +123,13 @@ public class FirstPersonController : MonoBehaviour {
         ApplyVelocity();
 
         //Slope checking
-        Vector3 knee = transform.position - new Vector3(0, 0.7f, 0); //height at which to raycast
+        Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
         RaycastHit hit;
         if (Physics.Raycast(knee, new Vector3(rb.velocity.x, 0, rb.velocity.z), out hit, 1.0f)) //cast in direction of movement
         {
             if (Vector3.Dot(Vector3.up, hit.normal) < 0.7f && Vector3.Dot(Vector3.up, hit.normal) >= 0.2f) //check angle of object hit by raycast
             {
-                rb.velocity = new Vector3(0, rb.velocity.y, 0); //Stop moving if angle is too steep
+                //rb.velocity = new Vector3(0, rb.velocity.y, 0); //Stop moving if angle is too steep
             }
         }
     }
@@ -140,6 +144,7 @@ public class FirstPersonController : MonoBehaviour {
         if (invertMouseX) mouseX = -Input.GetAxis("Camera X");
         else mouseX = Input.GetAxis("Camera X");
 
+        
         //Prevent camera from looking up too high or too low
         cameraYAngle = cameraTransform.localRotation.eulerAngles.x;
         if (mouseY > 0 && cameraYAngle > mouseYMin && cameraYAngle < mouseYMin + 10 || (mouseY < 0 && cameraYAngle < mouseYMax && cameraYAngle > mouseYMax - 10))
@@ -148,20 +153,42 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         //Rotate with mouse
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
+        transform.up = -gravityDirection;
+
         cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
-            cameraTransform.localRotation.eulerAngles.y, 0);
+            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
+        
+
+        
+
     }
 
     void ApplyVelocity()
     {
-        Vector3 forwardMovement = new Vector3(transform.forward.x, 0, transform.forward.z) * zMovement * movementSpeed;
-        Vector3 sideMovement = new Vector3(transform.right.x, 0, transform.right.z) * xMovement * movementSpeed;
+
+        Vector3 sideMovement;
+        Vector3 forwardMovement;
+            sideMovement = new Vector3(cameraTransform.right.x, 0, cameraTransform.right.z) * xMovement * movementSpeed;
+            forwardMovement = new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z) * zMovement * movementSpeed;
+        //Vector3 sideMovement = new Vector3(transform.right.x, 0, transform.right.z) * xMovement * movementSpeed;
         rb.velocity = forwardMovement + sideMovement + yMovement + (gravityDirection * gravity); 
     }
 
     Vector3 CurrentUpVelocity()
     {
-        return new Vector3(rb.velocity.x * -gravityDirection.x, rb.velocity.y * -gravityDirection.y, rb.velocity.z * -gravityDirection.z);
+        //return new Vector3(Mathf.Abs(rb.velocity.x) * (gravityDirection.x), Mathf.Abs(rb.velocity.y) * (gravityDirection.y), Mathf.Abs(rb.velocity.z) * (gravityDirection.z));
+        float x, y, z;
+        if (gravityDirection.x >= 0) x = rb.velocity.x * (gravityDirection.x);
+        else x = -rb.velocity.x * (gravityDirection.x);
+        if (gravityDirection.y >= 0) y = rb.velocity.y * (gravityDirection.y);
+        else y = -rb.velocity.y * (gravityDirection.y);
+        if (gravityDirection.z >= 0) z = rb.velocity.z * (gravityDirection.z);
+        else z = -rb.velocity.z * (gravityDirection.z);
+        return new Vector3(x, y, z);
+    }
+
+    Vector3 MultiplyByGravity(float direction)
+    {
+        return new Vector3(direction * -gravityDirection.x, direction * -gravityDirection.y, direction * -gravityDirection.z);
     }
 }
