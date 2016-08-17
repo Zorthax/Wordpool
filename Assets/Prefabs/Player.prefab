@@ -14,6 +14,7 @@ GameObject:
   - 54: {fileID: 5447442}
   - 114: {fileID: 11435454}
   - 114: {fileID: 11477898}
+  - 114: {fileID: 11427430}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -125,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110690}
   m_LocalRotation: {x: 0, y: 0.99905205, z: 0, w: -0.043532368}
-  m_LocalPosition: {x: 164.9, y: 46.59, z: 141.4}
+  m_LocalPosition: {x: 33, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422922}
@@ -241,7 +242,7 @@ Rigidbody:
   m_Mass: 4
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -309,6 +310,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11427430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a19666666c045d04dbdeac38a57ac8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carriedObject: {fileID: 0}
+  throwForce: 0
+  distance: 0
+  smooth: 0
+  speed: 0
+  height: 0
+  regrabDelay: 0.5
+  grabDistance: 5
+  oneTimeSoundSource: {fileID: 0}
+  soundSource: {fileID: 0}
 --- !u!114 &11435454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -317,10 +339,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 110690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3160a44b9deb0e54cb904973e19db25b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ef140c22124fa34fae0da430f12d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showCursor: 1
+  showCursor: 0
   yOrigin: 0
   mouseXSensitivity: 4
   mouseYSensitivity: 2
@@ -333,7 +355,7 @@ MonoBehaviour:
   bobbingSpeed: 5
   movementSpeed: 15
   sprintMultiplier: 2
-  jumpPower: 7
+  jumpPower: 10
   speedInAirMultiplier: 1
   sprintInAir: 0
   gravity: 0.2
@@ -345,7 +367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96363c37e29976c45b5f9cec7bb1a528, type: 3}
+  m_Script: {fileID: 11500000, guid: f3eada20580675b45a5191bd0d76a4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   notepad: {fileID: 458630}
