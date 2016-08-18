@@ -126,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110690}
   m_LocalRotation: {x: 0, y: 0.99905205, z: 0, w: -0.043532368}
-  m_LocalPosition: {x: 33, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422922}
@@ -351,14 +351,15 @@ MonoBehaviour:
   invertMouseX: 0
   invertMouseY: 0
   headBobbing: 1
-  bobbingHeight: 0.5
+  bobbingHeight: 0.3
   bobbingSpeed: 5
   movementSpeed: 15
   sprintMultiplier: 2
-  jumpPower: 10
+  jumpPower: 8
   speedInAirMultiplier: 1
   sprintInAir: 0
-  gravity: 0.2
+  gravity: 0.25
+  gravityDirection: {x: 0, y: -1, z: 0}
 --- !u!114 &11477898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notepad: {fileID: 458630}
-  position: {x: -1, y: -0.4, z: 0.5}
+  position: {x: -0.5, y: -0.2, z: 0.5}
   moveSpeed: 0.1
   sentence: 
   text: {fileID: 11405568}

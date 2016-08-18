@@ -57,9 +57,7 @@ public class PickupObject : MonoBehaviour {
 
 		Vector3 direct = (mainCamera.transform.position + mainCamera.transform.forward * distance) - obj.transform.position;
 		direct.Normalize ();
-		obj.GetComponent<Rigidbody>().velocity=direct * smooth*Vector3.Distance(mainCamera.transform.position + mainCamera.transform.forward * distance
-		                                                                        ,obj.transform.position);
-		                                                    
+		obj.GetComponent<Rigidbody>().velocity=direct * smooth*Vector3.Distance(mainCamera.transform.position + mainCamera.transform.forward * distance, obj.transform.position);                                                  
 		// stop picked up object rotating
 		obj.transform.rotation = Quaternion.identity;
 
