@@ -100,6 +100,12 @@ public class MovingPlatform : MonoBehaviour {
             //Vector3 position = this.transform.position - other.transform.position;
             //player.transform.position = player.transform.position + position;
         }
+		//Objective trigger enter added
+		if (other.transform.tag == "WordPickup")
+		{
+			other.transform.parent = this.transform;
+		}
+
     }
 
     void OnTriggerExit(Collider other)
@@ -109,6 +115,9 @@ public class MovingPlatform : MonoBehaviour {
             other.transform.parent = null;
             //other.transform.localScale = new Vector3(1, 1, 1);
         }
+		//Objective trigger exit added
+		if (other.transform.tag == "WordPickup")
+			other.transform.parent = null;
     }
 
     //void OnTriggerEnter(Collider other)
