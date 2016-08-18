@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - WordPickup
+=======
+  - Gravity Wall
+>>>>>>> 4269c3096280c03bba84dbc0972dfc34f3c41589
   layers:
   - Default
   - TransparentFX
