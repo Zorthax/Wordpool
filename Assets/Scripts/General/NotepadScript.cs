@@ -4,7 +4,7 @@ using System.Collections;
 public class NotepadScript : MonoBehaviour {
 
     public Transform notepad;
-    public Vector3 position;
+    public Vector3 position = new Vector3(-0.4f, -0.2f, 0.5f);
     public float moveSpeed;
     public string sentence;
     public UnityEngine.UI.Text text;
@@ -12,7 +12,6 @@ public class NotepadScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        sentence = "In the sky";
 	}
 	
 	// Update is called once per frame

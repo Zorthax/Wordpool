@@ -33,6 +33,11 @@ public class FirstPersonController : MonoBehaviour {
     float xMovement;
     Vector3 yMovement;
     float zMovement;
+    bool changingCamera;
+    Vector3 previousUp;
+    Vector3 previousRight;
+    Vector3 previousForward;
+    Vector3 newUp;
 
     public Vector3 gravityDirection = new Vector3(0, -1, 0);
     Transform cameraTransform;
@@ -42,6 +47,7 @@ public class FirstPersonController : MonoBehaviour {
     {
         Cursor.visible = showCursor;
         if (!showCursor) Cursor.lockState = CursorLockMode.Locked;
+        changingCamera = false;
 
         //gravityDirection = new Vector3(0, 0, 1);
         transform.up = gravityDirection;
@@ -54,10 +60,16 @@ public class FirstPersonController : MonoBehaviour {
 	
 	void Update ()
     {
-
-        GroundCheck();
-        CameraMovement();
-        PlayerMovement();
+        if (!changingCamera)
+        {
+            GroundCheck();
+            CameraMovement();
+            PlayerMovement();
+        }
+        else
+        {
+            FixCamera();
+        }
         
 
         //Keep camera at player position
@@ -98,7 +110,10 @@ public class FirstPersonController : MonoBehaviour {
     void PlayerMovement()
     {
         //Jumping
-        if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
+
+        if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
+        else if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
+        //else if (grounded) yMovement = gravityDirection * 1.4f;
         else yMovement = CurrentUpVelocity();
         
 
@@ -125,11 +140,11 @@ public class FirstPersonController : MonoBehaviour {
         //Slope checking
         Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
         RaycastHit hit;
-        if (Physics.Raycast(knee, new Vector3(rb.velocity.x, 0, rb.velocity.z), out hit, 1.0f)) //cast in direction of movement
+        if (Physics.Raycast(knee, rb.velocity, out hit, 1.0f)) //cast in direction of movement
         {
-            if (Vector3.Dot(Vector3.up, hit.normal) < 0.7f && Vector3.Dot(Vector3.up, hit.normal) >= 0.2f) //check angle of object hit by raycast
+            if (Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f) //check angle of object hit by raycast
             {
-                //rb.velocity = new Vector3(0, rb.velocity.y, 0); //Stop moving if angle is too steep
+                rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
             }
         }
     }
@@ -144,7 +159,6 @@ public class FirstPersonController : MonoBehaviour {
         if (invertMouseX) mouseX = -Input.GetAxis("Camera X");
         else mouseX = Input.GetAxis("Camera X");
 
-        
         //Prevent camera from looking up too high or too low
         cameraYAngle = cameraTransform.localRotation.eulerAngles.x;
         if (mouseY > 0 && cameraYAngle > mouseYMin && cameraYAngle < mouseYMin + 10 || (mouseY < 0 && cameraYAngle < mouseYMax && cameraYAngle > mouseYMax - 10))
@@ -153,31 +167,26 @@ public class FirstPersonController : MonoBehaviour {
         }
 
         //Rotate with mouse
-        transform.up = -gravityDirection;
+        transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 1.0f);
 
         cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
-            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
-
-        Debug.Log("Camera right: " + cameraTransform.right);
-        
-
+            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);     
     }
 
     void ApplyVelocity()
     {
-
         Vector3 sideMovement;
         Vector3 forwardMovement;
 
-        Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right;
-        //
+        Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right; //Alternative to camera's forward
+        //Move based on camera's angle and gravity direction
         sideMovement = new Vector3(cameraTransform.right.x * DoubleAbs(gravityDirection.x), 
             cameraTransform.right.y * DoubleAbs(gravityDirection.y), 
             cameraTransform.right.z * DoubleAbs(gravityDirection.z)) * xMovement * movementSpeed;
         forwardMovement = new Vector3(forward.x * DoubleAbs(gravityDirection.x),
             forward.y * DoubleAbs(gravityDirection.y),
             forward.z * DoubleAbs(gravityDirection.z)) * zMovement * movementSpeed;
-        //Vector3 sideMovement = new Vector3(transform.right.x, 0, transform.right.z) * xMovement * movementSpeed;
+
         rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity); 
     }
 
@@ -204,5 +213,29 @@ public class FirstPersonController : MonoBehaviour {
         //0 will equal 1
         //1 and -1 will equal 0
         return Mathf.Abs(Mathf.Abs(num - 1));
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Gravity Wall" && !changingCamera && transform.up != other.transform.up)
+        {
+            previousUp = transform.up;
+            previousRight = cameraTransform.right;
+            gravityDirection = -other.transform.up;
+
+            changingCamera = true;
+        }
+    }
+
+    void FixCamera()
+    {
+        Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right;
+        //transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
+        transform.up = -gravityDirection;
+        //cameraTransform.right = previousRight;
+        Vector3 newRight = Quaternion.AngleAxis(-90, forward) * previousRight;
+        forward = Quaternion.AngleAxis(-90, transform.up) * newRight;
+        cameraTransform.forward = Vector3.MoveTowards(cameraTransform.forward, forward, 0.1f);
+        if (cameraTransform.forward == forward) changingCamera = false;
     }
 }
