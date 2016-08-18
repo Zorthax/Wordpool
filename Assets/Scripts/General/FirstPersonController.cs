@@ -157,8 +157,8 @@ public class FirstPersonController : MonoBehaviour {
 
         cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
             cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
-        
 
+        Debug.Log("Camera right: " + cameraTransform.right);
         
 
     }
@@ -168,10 +168,17 @@ public class FirstPersonController : MonoBehaviour {
 
         Vector3 sideMovement;
         Vector3 forwardMovement;
-            sideMovement = new Vector3(cameraTransform.right.x, 0, cameraTransform.right.z) * xMovement * movementSpeed;
-            forwardMovement = new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z) * zMovement * movementSpeed;
+
+        Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right;
+        //
+        sideMovement = new Vector3(cameraTransform.right.x * DoubleAbs(gravityDirection.x), 
+            cameraTransform.right.y * DoubleAbs(gravityDirection.y), 
+            cameraTransform.right.z * DoubleAbs(gravityDirection.z)) * xMovement * movementSpeed;
+        forwardMovement = new Vector3(forward.x * DoubleAbs(gravityDirection.x),
+            forward.y * DoubleAbs(gravityDirection.y),
+            forward.z * DoubleAbs(gravityDirection.z)) * zMovement * movementSpeed;
         //Vector3 sideMovement = new Vector3(transform.right.x, 0, transform.right.z) * xMovement * movementSpeed;
-        rb.velocity = forwardMovement + sideMovement + yMovement + (gravityDirection * gravity); 
+        rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity); 
     }
 
     Vector3 CurrentUpVelocity()
@@ -190,5 +197,12 @@ public class FirstPersonController : MonoBehaviour {
     Vector3 MultiplyByGravity(float direction)
     {
         return new Vector3(direction * -gravityDirection.x, direction * -gravityDirection.y, direction * -gravityDirection.z);
+    }
+
+    float DoubleAbs(float num)
+    {
+        //0 will equal 1
+        //1 and -1 will equal 0
+        return Mathf.Abs(Mathf.Abs(num - 1));
     }
 }
