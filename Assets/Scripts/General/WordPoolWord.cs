@@ -7,6 +7,7 @@ public class WordPoolWord : MonoBehaviour {
     public GameObject OppositeWordOff;
 
     //public string triggerPhaseWord;
+    public bool replaceSentence = false;
     public string sentence;
     //public string otherWordOff;
 

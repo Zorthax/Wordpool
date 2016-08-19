@@ -4644,7 +4644,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1729260846}
   OppositeWordOff: {fileID: 1900837343}
-  sentence: aaaaa
+  replaceSentence: 0
+  sentence: 'roses. In the sky are '
 --- !u!1 &103369724
 GameObject:
   m_ObjectHideFlags: 0
@@ -7695,6 +7696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 1145415371}
+  replaceSentence: 0
   sentence: 
 --- !u!1 &160471051
 GameObject:
@@ -14616,7 +14618,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 90, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &308598391
 MonoBehaviour:
@@ -16294,7 +16296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1420769724}
   OppositeWordOff: {fileID: 1934089895}
-  sentence: 
+  replaceSentence: 0
+  sentence: faces.
 --- !u!1 &332754163
 GameObject:
   m_ObjectHideFlags: 0
@@ -29464,7 +29467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 930454747}
   OppositeWordOff: {fileID: 1564766133}
-  sentence: 
+  replaceSentence: 0
+  sentence: faces.
 --- !u!1 &612426333
 GameObject:
   m_ObjectHideFlags: 0
@@ -29649,6 +29653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 915718494}
+  replaceSentence: 0
   sentence: 
 --- !u!65 &615087836
 BoxCollider:
@@ -33915,6 +33920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 828091475}
+  replaceSentence: 0
   sentence: 
 --- !u!1 &676074504
 GameObject:
@@ -41719,6 +41725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 675425493}
+  replaceSentence: 0
   sentence: 
 --- !u!1 &828305852
 GameObject:
@@ -46838,6 +46845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 615087834}
+  replaceSentence: 0
   sentence: 
 --- !u!65 &915718497
 BoxCollider:
@@ -49115,6 +49123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 1482831265}
+  replaceSentence: 0
   sentence: 
 --- !u!114 &972367883
 MonoBehaviour:
@@ -50848,9 +50857,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notepad: {fileID: 1812811565}
-  position: {x: -1, y: -0.4, z: 0.5}
+  position: {x: -0.5, y: -0.2, z: 0.5}
   moveSpeed: 0.1
-  sentence: 
+  sentence: 'Around me are '
   text: {fileID: 308598391}
 --- !u!114 &1005219957
 MonoBehaviour:
@@ -53271,6 +53280,49 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1043487022}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1047680753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 164244, guid: 743c0c9b9ce2fb941afad98f7b7eef0d, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1047680755}
+  - 114: {fileID: 1047680754}
+  m_Layer: 0
+  m_Name: Saving System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1047680754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11406992, guid: 743c0c9b9ce2fb941afad98f7b7eef0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1047680753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369ca28161e2f9c4a895f0276be48814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizeOfScreen: 0
+  paintingWidth: 450
+  paintingHeight: 600
+--- !u!4 &1047680755
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 434950, guid: 743c0c9b9ce2fb941afad98f7b7eef0d, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1047680753}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 259.41782, y: 24.621546, z: 174.60985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1048461964
 GameObject:
   m_ObjectHideFlags: 0
@@ -57957,6 +58009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 159552247}
+  replaceSentence: 0
   sentence: 
 --- !u!54 &1145415378
 Rigidbody:
@@ -75168,6 +75221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 972367881}
+  replaceSentence: 0
   sentence: 
 --- !u!65 &1482831268
 BoxCollider:
@@ -80187,7 +80241,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1767448950}
   OppositeWordOff: {fileID: 610255857}
-  sentence: 
+  replaceSentence: 0
+  sentence: butterflies (clocks).
 --- !u!1 &1565617819
 GameObject:
   m_ObjectHideFlags: 0
@@ -97295,7 +97350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1743796215}
   OppositeWordOff: {fileID: 102141593}
-  sentence: 
+  replaceSentence: 1
+  sentence: 'clocks. In the sky are '
 --- !u!1 &1904331969
 GameObject:
   m_ObjectHideFlags: 0
@@ -98809,7 +98865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1626682329}
   OppositeWordOff: {fileID: 331143138}
-  sentence: 
+  replaceSentence: 0
+  sentence: butterflies (clocks).
 --- !u!1 &1934920399
 GameObject:
   m_ObjectHideFlags: 0

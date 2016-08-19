@@ -190,7 +190,7 @@ public class FirstPersonController : MonoBehaviour {
         rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity); 
     }
 
-    Vector3 CurrentUpVelocity()
+    Vector3 CurrentUpVelocity() 
     {
         //return new Vector3(Mathf.Abs(rb.velocity.x) * (gravityDirection.x), Mathf.Abs(rb.velocity.y) * (gravityDirection.y), Mathf.Abs(rb.velocity.z) * (gravityDirection.z));
         float x, y, z;

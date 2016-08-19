@@ -35,7 +35,12 @@ public class wordsHitPool : MonoBehaviour
         if (obj.PhaseTrigger != null)
             obj.PhaseTrigger.SetActive(true);
         obj.OppositeWordOff.SetActive(false);
-        note.sentence += obj.sentence;
+
+        if (obj.replaceSentence)
+            note.sentence = obj.sentence;
+        else
+            note.sentence += obj.sentence;
+
         col.gameObject.SetActive(false);
 
         if (player.GetComponent<PickupObject>().carriedObject != null)
