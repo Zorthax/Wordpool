@@ -3,34 +3,14 @@ using System.Collections;
 
 public class wordsHitPool : MonoBehaviour 
 {
-	public GameObject roses;
-	public GameObject clocks;
-	public GameObject faces;
-	public GameObject butter;
     GameObject player;
-    public GameObject defaultRosePosition;
-    public GameObject defaultClockPosition;
-    public GameObject defaultFacePosition;
-    public GameObject defaultButterPosition;
-    public GameObject defaultResetPosition;
-    GameObject roseWord;
-    GameObject clockWord;
-    GameObject faceWord;
-    GameObject butterWord;
-
     //All note related stuff done by Adam
     NotepadScript note;
-
 
     // Use this for initialization
     void Start () 
 	{
-        roseWord = GameObject.FindGameObjectWithTag("roseword");
-        clockWord = GameObject.FindGameObjectWithTag("clockword");
-        faceWord = GameObject.FindGameObjectWithTag("faceword");
-        butterWord = GameObject.FindGameObjectWithTag("butterword");
         player = GameObject.FindGameObjectWithTag("Player");
-
         note = GameObject.FindGameObjectWithTag("Player").GetComponent<NotepadScript>();
     }
 	
@@ -41,7 +21,46 @@ public class wordsHitPool : MonoBehaviour
 
 	void OnTriggerEnter (Collider col)
 	{
-		if (col.tag == "roseword") {
+        WordPoolWord obj = col.gameObject.GetComponent<WordPoolWord>();
+        if (obj == null)
+            return;
+        //quit function, change string in quotations to whatever the quit button is being named
+        if (obj.PhaseTrigger != null && obj.PhaseTrigger.name == "Quit")
+        {
+            obj.gameObject.SetActive(false);
+            Application.Quit();
+        }
+
+        if (obj.PhaseTrigger != null)
+            obj.PhaseTrigger.SetActive(true);
+        obj.OppositeWordOff.SetActive(false);
+        note.sentence += obj.sentence;
+        col.gameObject.SetActive(false);
+
+        if (player.GetComponent<PickupObject>().carriedObject != null)
+            player.GetComponent<PickupObject>().DropObject();
+
+        //for (int i = 0; i < phases.Length; i++)
+        //{
+        //    if (obj.triggerPhaseWord == phases[i].name)
+        //    {
+        //        phases[i].SetActive(true);
+        //        note.sentence += obj.sentence;
+        //    }
+        //}
+
+        //string onTag = obj.triggerPhaseWord; // string member
+        //GameObject wordOn = GameObject.Find(onTag);
+        //wordOn.SetActive(true);
+        //note.sentence += obj.sentence; // string member of WordPoolWord
+
+        //string offTag = obj.otherWordOff;
+        //GameObject wordOff = GameObject.FindGameObjectWithTag(offTag);
+        //wordOff.SetActive(false);
+
+        //old wordpool script
+        /*
+        if (col.tag == "roseword") {
 			Debug.Log ("Roses Active");
 			roses.SetActive (true);
             note.sentence += " are roses. Around me";
@@ -107,6 +126,6 @@ public class wordsHitPool : MonoBehaviour
             //---The following two lines makes the game quit if the player touches the wordpool
             col.gameObject.SetActive(false);
             Application.Quit();
-        }
+        }*/
     }
 }
