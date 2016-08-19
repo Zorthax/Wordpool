@@ -21,10 +21,11 @@ public class wordsHitPool : MonoBehaviour
 
 	void OnTriggerEnter (Collider col)
 	{
+        //check if there is a WordPoolWord component on the other object
         WordPoolWord obj = col.gameObject.GetComponent<WordPoolWord>();
         if (obj == null)
             return;
-        //quit function, change string in quotations to whatever the quit button is being named
+        //figure out what is going to happen with quit object
         if (obj.PhaseTrigger != null && obj.PhaseTrigger.name == "Quit")
         {
             obj.gameObject.SetActive(false);
