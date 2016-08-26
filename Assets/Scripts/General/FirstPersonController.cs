@@ -23,7 +23,9 @@ public class FirstPersonController : MonoBehaviour {
     public float jumpPower = 10;
     public float speedInAirMultiplier = 1.0f;
     public bool sprintInAir;
-    public float gravity = 9.18f;
+    public float gravity = 0.25f;
+    public float platformAssistHeight;
+    public float platformAssistSensitivity;
 
 
     float cameraYAngle;
@@ -38,6 +40,7 @@ public class FirstPersonController : MonoBehaviour {
     Vector3 previousRight;
     Vector3 previousForward;
     Vector3 newUp;
+    Vector3 tempRight;
 
     public Vector3 gravityDirection = new Vector3(0, -1, 0);
     Transform cameraTransform;
@@ -84,7 +87,7 @@ public class FirstPersonController : MonoBehaviour {
             if (xMovement != 0 || zMovement != 0)
             {
                 bobEvening = Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed));
-                if (Input.GetButton("Sprint") && grounded)
+                if ((Input.GetButton("Sprint") || Input.GetAxis("Sprint") != 0) && grounded)
                     return MultiplyByGravity(Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed * sprintMultiplier)) * bobbingHeight);
                 else
                     return MultiplyByGravity(Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed)) * bobbingHeight);
@@ -101,9 +104,29 @@ public class FirstPersonController : MonoBehaviour {
 
     void GroundCheck()
     {
-        //Raycast downwards
+        //Check if on ground
         float distToGround = 1.2f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround);
+
+        //Move towards platforms
+        if (!grounded)
+        {
+            RaycastHit[] all = Physics.RaycastAll(transform.position, gravityDirection, platformAssistHeight);
+
+            foreach(RaycastHit h in all)
+            {
+                if (h.transform.tag == "Platform Assist" && rb.velocity.y < 0)
+                {
+                    Debug.Log(DoubleAbs(gravityDirection.y));
+                    Vector3 diff = transform.position - h.transform.position;
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        new Vector3(transform.position.x - (diff.x * DoubleAbs(gravityDirection.x)), 
+                        transform.position.y - (diff.y * DoubleAbs(gravityDirection.y)), 
+                        transform.position.z - (diff.z * DoubleAbs(gravityDirection.z))), 
+                        platformAssistSensitivity);
+                }
+            }
+        }
         
     }
 
@@ -130,7 +153,7 @@ public class FirstPersonController : MonoBehaviour {
             xMovement /= 2;
             zMovement /= 2;
         }
-        if (Input.GetButton("Sprint") && !(!sprintInAir && !grounded)) //Sprinting
+        if ((Input.GetButton("Sprint") || Input.GetAxis("Sprint") != 0) && !(!sprintInAir && !grounded)) //Sprinting
         {
             xMovement *= sprintMultiplier;
             zMovement *= sprintMultiplier;
@@ -170,7 +193,10 @@ public class FirstPersonController : MonoBehaviour {
         transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 1.0f);
 
         cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
-            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);     
+            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
+        //transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
+        //    transform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
+        //transform.right = cameraTransform.right;
     }
 
     void ApplyVelocity()
@@ -212,7 +238,8 @@ public class FirstPersonController : MonoBehaviour {
     {
         //0 will equal 1
         //1 and -1 will equal 0
-        return Mathf.Abs(Mathf.Abs(num - 1));
+        //Good for movement at different perspectives/angles
+        return Mathf.Abs(Mathf.Abs(num) - 1);
     }
 
     void OnTriggerEnter(Collider other)
@@ -222,6 +249,7 @@ public class FirstPersonController : MonoBehaviour {
             previousUp = transform.up;
             previousRight = cameraTransform.right;
             gravityDirection = -other.transform.up;
+            
 
             changingCamera = true;
         }
@@ -237,5 +265,10 @@ public class FirstPersonController : MonoBehaviour {
         forward = Quaternion.AngleAxis(-90, transform.up) * newRight;
         cameraTransform.forward = Vector3.MoveTowards(cameraTransform.forward, forward, 0.1f);
         if (cameraTransform.forward == forward)*/ changingCamera = false;
+        transform.up = -gravityDirection;
+
+        //Vector3 temp = Quaternion.AngleAxis(-90, previousUp) * -gravityDirection;
+        //cameraTransform.right = Quaternion.AngleAxis(90, -gravityDirection) * previousUp;//Quaternion.AngleAxis(-90, temp) * previousRight;
+
     }
 }
