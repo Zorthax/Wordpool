@@ -264,8 +264,10 @@ public class FirstPersonController : MonoBehaviour {
         Vector3 newRight = Quaternion.AngleAxis(-90, forward) * previousRight;
         forward = Quaternion.AngleAxis(-90, transform.up) * newRight;
         cameraTransform.forward = Vector3.MoveTowards(cameraTransform.forward, forward, 0.1f);
-        if (cameraTransform.forward == forward)*/ changingCamera = false;
-        transform.up = -gravityDirection;
+        if (cameraTransform.forward == forward)*/ //changingCamera = false;
+        transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
+        if (transform.up == -gravityDirection) changingCamera = false;
+        //transform.up = -gravityDirection;
 
         //Vector3 temp = Quaternion.AngleAxis(-90, previousUp) * -gravityDirection;
         //cameraTransform.right = Quaternion.AngleAxis(90, -gravityDirection) * previousUp;//Quaternion.AngleAxis(-90, temp) * previousRight;
