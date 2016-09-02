@@ -53,7 +53,7 @@ public class FirstPersonController : MonoBehaviour {
         changingCamera = false;
 
         //gravityDirection = new Vector3(0, 0, 1);
-        transform.up = gravityDirection;
+        transform.up = -gravityDirection;
         //transform.rotation = Quaternion.Euler(gravityDirection * 90);
         cameraTransform = this.gameObject.transform.GetChild(0);
         cameraTransform.forward = transform.forward;
@@ -134,9 +134,8 @@ public class FirstPersonController : MonoBehaviour {
     {
         //Jumping
 
-        if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
-        else if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
-        //else if (grounded) yMovement = gravityDirection * 1.4f;
+        /*if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
+        else */if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
         else yMovement = CurrentUpVelocity();
         
 
@@ -161,15 +160,15 @@ public class FirstPersonController : MonoBehaviour {
         ApplyVelocity();
 
         //Slope checking
-        Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
-        RaycastHit hit;
-        if (Physics.Raycast(knee, rb.velocity, out hit, 1.0f)) //cast in direction of movement
-        {
-            if (Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f) //check angle of object hit by raycast
-            {
-                rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
-            }
-        }
+        //Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
+        //RaycastHit hit;
+        //if (Physics.Raycast(knee, rb.velocity, out hit, 1.0f)) //cast in direction of movement
+        //{
+        //    if (Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f) //check angle of object hit by raycast
+        //    {
+        //        rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
+        //    }
+        //}
     }
 
     void CameraMovement()
@@ -194,9 +193,6 @@ public class FirstPersonController : MonoBehaviour {
 
         cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
             cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
-        //transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
-        //    transform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
-        //transform.right = cameraTransform.right;
     }
 
     void ApplyVelocity()
@@ -257,20 +253,9 @@ public class FirstPersonController : MonoBehaviour {
 
     void FixCamera()
     {
-        /*Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right;
-        //transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
-        transform.up = -gravityDirection;
-        //cameraTransform.right = previousRight;
-        Vector3 newRight = Quaternion.AngleAxis(-90, forward) * previousRight;
-        forward = Quaternion.AngleAxis(-90, transform.up) * newRight;
-        cameraTransform.forward = Vector3.MoveTowards(cameraTransform.forward, forward, 0.1f);
-        if (cameraTransform.forward == forward)*/ //changingCamera = false;
+
         transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
         if (transform.up == -gravityDirection) changingCamera = false;
-        //transform.up = -gravityDirection;
-
-        //Vector3 temp = Quaternion.AngleAxis(-90, previousUp) * -gravityDirection;
-        //cameraTransform.right = Quaternion.AngleAxis(90, -gravityDirection) * previousUp;//Quaternion.AngleAxis(-90, temp) * previousRight;
 
     }
 }
