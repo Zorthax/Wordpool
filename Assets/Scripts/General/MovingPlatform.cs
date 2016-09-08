@@ -8,7 +8,8 @@ public class MovingPlatform : MonoBehaviour {
     bool reached = false;
     GameObject player;
     public float speed;
-
+	public float travelTime = 0;
+	
     //Unused function for previous moving platform attempts
     //void movePlatform(Vector3 pos, Vector3 movePosition, float speed)
     //{
@@ -28,6 +29,9 @@ public class MovingPlatform : MonoBehaviour {
 	
 	//Update is called once per frame
 	void Update () {
+		if (travelTime !=0)
+			speed = (start-end).magnitude/travelTime;
+		
         if (!reached)
         {
             //finds distance between where the platform is to its end point

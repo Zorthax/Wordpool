@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5447442}
   - 114: {fileID: 11435454}
   - 114: {fileID: 11477898}
-  - 114: {fileID: 114000014142902304}
+  - 114: {fileID: 114000013625385454}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -69,7 +69,7 @@ GameObject:
   - 124: {fileID: 12455804}
   - 92: {fileID: 9234262}
   - 81: {fileID: 8139754}
-  - 114: {fileID: 114000014066439500}
+  - 114: {fileID: 114000012690733902}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110690}
   m_LocalRotation: {x: 0, y: 0.99905205, z: 0, w: -0.043532368}
-  m_LocalPosition: {x: -0.35, y: 6.26, z: 0.03}
+  m_LocalPosition: {x: 32.38, y: -4.94, z: -21.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -177,10 +177,10 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179696}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
@@ -254,9 +254,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!81 &8139754
 AudioListener:
   m_ObjectHideFlags: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 8
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef140c22124fa34fae0da430f12d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showCursor: 1
+  showCursor: 0
   yOrigin: -0.5
   mouseXSensitivity: 4
   mouseYSensitivity: 2
@@ -339,10 +339,10 @@ MonoBehaviour:
   mouseYMin: 70
   invertMouseX: 0
   invertMouseY: 1
-  headBobbing: 0
+  headBobbing: 1
   bobbingHeight: 0.3
   bobbingSpeed: 7
-  movementSpeed: 0.5
+  movementSpeed: 0.3
   sprintMultiplier: 1.5
   jumpPower: 0.2
   speedInAirMultiplier: 1
@@ -514,7 +514,7 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 110690}
   m_IsPrefabParent: 1
---- !u!114 &114000014066439500
+--- !u!114 &114000012690733902
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -535,7 +535,7 @@ MonoBehaviour:
   grabDistance: 5
   oneTimeSoundSource: {fileID: 0}
   soundSource: {fileID: 0}
---- !u!114 &114000014142902304
+--- !u!114 &114000013625385454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
