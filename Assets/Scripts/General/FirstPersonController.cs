@@ -28,6 +28,9 @@ public class FirstPersonController : MonoBehaviour {
     public float platformAssistHeight;
     public float platformAssistSensitivity;
 
+    public float timeUntilGravityReset = 2;
+    float resetDelay;
+
 
     float cameraYAngle;
     bool grounded;
@@ -64,6 +67,7 @@ public class FirstPersonController : MonoBehaviour {
         cameraTransform.forward = transform.forward;
 
         upMovement = 0;
+        resetDelay = timeUntilGravityReset;
 
         rb = GetComponent<Rigidbody>();
 	}
@@ -82,10 +86,16 @@ public class FirstPersonController : MonoBehaviour {
             FixCamera();
         }
         
+    }
 
+    void Update()
+    {
         //Keep camera at player position
-        cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.1f);
-        
+        cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.05f);
+
+        if (!grounded && !canJump && !onSlope && resetDelay > 0) { resetDelay -= Time.deltaTime; }
+        else if (grounded || canJump || onSlope) { resetDelay = timeUntilGravityReset; }
+        else { gravityDirection = (new Vector3(0, -1, 0)); }
     }
 
     public Vector3 CameraBobHeight()
@@ -114,25 +124,21 @@ public class FirstPersonController : MonoBehaviour {
     {
         //Check if on ground
         float distToGround = 1.0f;
-        grounded = Physics.Raycast(transform.position, gravityDirection, distToGround);
-        canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * 3.0f);
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 8.0f);
+        grounded = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
+        canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * (1.0f + (jumpPower * 5)), 1, QueryTriggerInteraction.Ignore);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 2.0f, 1, QueryTriggerInteraction.Ignore);
 
         onSlope = false;
         foreach (RaycastHit h in hits)
         {
-            
-            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 45 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
+            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 60 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
             {
                 Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
                 onSlope = true;
                 break;
             }
-
+        
         }
-        //
-        //
-        //grounded = Physics.BoxCast(transform.position, new Vector3(0.5f, 0.2f, 0.5f), gravityDirection, new Quaternion(0, 0, 0, 0), distToGround);
 
         //Move towards platforms
         if (!grounded)
@@ -169,6 +175,7 @@ public class FirstPersonController : MonoBehaviour {
         if (!grounded && !onSlope) upMovement -= gravity;
         else if (!canJump && onSlope && upMovement <= 0 && !Input.GetButton("Jump")) { upMovement -= gravity * 12; Debug.Log("Extra Gravity"); }
         else upMovement = 0;
+
         if (canJump && Input.GetButton("Jump")) upMovement = jumpPower;
         
 
