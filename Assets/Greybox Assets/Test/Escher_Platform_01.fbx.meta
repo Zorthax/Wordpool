@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f150138cae2cb6740a1aaa7c3a0d186b
-timeCreated: 1472626844
+guid: 4ff8062b4ea7ced46a32842b50913357
+timeCreated: 1473295664
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: polySurface285
-    6400000: //RootNode
+    4300000: Escher_Platform_01
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -19,7 +18,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -36,9 +35,9 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 15
+    globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

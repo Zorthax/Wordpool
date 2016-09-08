@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 9a72de3d4284eed458534029f61969b5
-timeCreated: 1472189035
+guid: a86d819f92fc0b04490df0b179b6ffb9
+timeCreated: 1472709299
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: polySurface179
-    100002: //RootNode
-    400000: polySurface179
-    400002: //RootNode
-    2300000: polySurface179
-    3300000: polySurface179
-    4300000: polySurface179
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Escher_PlatformRails_03
+    6400000: //RootNode
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -36,9 +36,9 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 15
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -70,7 +70,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

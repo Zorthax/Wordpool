@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f150138cae2cb6740a1aaa7c3a0d186b
-timeCreated: 1472626844
+guid: 2c4a742614712b344a0925d225c6f805
+timeCreated: 1472709299
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: polySurface285
+    4300000: Escher_Platform_04
     6400000: //RootNode
     9500000: //RootNode
   materials:
@@ -36,7 +36,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 15
+    globalScale: 15.2
     meshCompression: 0
     addColliders: 1
     importBlendShapes: 1

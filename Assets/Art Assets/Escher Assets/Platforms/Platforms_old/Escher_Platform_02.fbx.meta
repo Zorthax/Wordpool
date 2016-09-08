@@ -1,16 +1,18 @@
 fileFormatVersion: 2
-guid: f150138cae2cb6740a1aaa7c3a0d186b
-timeCreated: 1472626844
+guid: 9b1c9c79ac6e71649a6c69c54d8deffc
+timeCreated: 1472709299
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: polySurface285
-    6400000: //RootNode
+    100000: Escher_Platform_02
+    100002: //RootNode
+    400000: Escher_Platform_02
+    400002: //RootNode
+    2300000: Escher_Platform_02
+    3300000: Escher_Platform_02
+    4300000: Escher_Platform_02
+    6400000: Escher_Platform_02
     9500000: //RootNode
   materials:
     importMaterials: 1

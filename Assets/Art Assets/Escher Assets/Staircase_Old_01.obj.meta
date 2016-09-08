@@ -1,17 +1,18 @@
 fileFormatVersion: 2
-guid: f150138cae2cb6740a1aaa7c3a0d186b
-timeCreated: 1472626844
+guid: 9a72de3d4284eed458534029f61969b5
+timeCreated: 1472189035
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: polySurface285
-    6400000: //RootNode
-    9500000: //RootNode
+    100000: polySurface179
+    100002: //RootNode
+    400000: polySurface179
+    400002: //RootNode
+    2300000: polySurface179
+    3300000: polySurface179
+    4300000: polySurface179
+    6400000: polySurface179
   materials:
     importMaterials: 1
     materialName: 0
@@ -36,7 +37,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 15
+    globalScale: 0.2
     meshCompression: 0
     addColliders: 1
     importBlendShapes: 1
@@ -70,7 +71,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
