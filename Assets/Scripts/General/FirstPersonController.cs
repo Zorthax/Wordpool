@@ -121,16 +121,16 @@ public class FirstPersonController : MonoBehaviour {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 3.0f, 1, QueryTriggerInteraction.Ignore);
 
         onSlope = false;
-        //foreach (RaycastHit h in hits)
-        //{
-        //    if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 45 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
-        //    {
-        //        Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
-        //        onSlope = true;
-        //        break;
-        //    }
-        //
-        //}
+        foreach (RaycastHit h in hits)
+        {
+            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 60 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
+            {
+                Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
+                onSlope = true;
+                break;
+            }
+        
+        }
 
         //Move towards platforms
         if (!grounded)
