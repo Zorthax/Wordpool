@@ -113,7 +113,7 @@ public class FirstPersonController : MonoBehaviour {
     void GroundCheck()
     {
         //Check if on ground
-        float distToGround = 0.5f;
+        float distToGround = 1.0f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround);
         canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * 3.0f);
         RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 8.0f);
