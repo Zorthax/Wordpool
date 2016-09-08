@@ -24,6 +24,7 @@ public class FirstPersonController : MonoBehaviour {
     public float speedInAirMultiplier = 1.0f;
     public bool sprintInAir;
     public float gravity = 0.25f;
+    public float maxGravity = 2;
     public float platformAssistHeight;
     public float platformAssistSensitivity;
 
@@ -31,9 +32,11 @@ public class FirstPersonController : MonoBehaviour {
     float cameraYAngle;
     bool grounded;
     bool onSlope;
+    bool canJump;
     float bobEvening;
     float xMovement;
     Vector3 yMovement;
+    float upMovement;
     float zMovement;
     bool changingCamera;
     Vector3 previousUp;
@@ -41,6 +44,7 @@ public class FirstPersonController : MonoBehaviour {
     Vector3 previousForward;
     Vector3 newUp;
     Vector3 tempRight;
+    Rigidbody parentRB;
 
     public Vector3 gravityDirection = new Vector3(0, -1, 0);
     Transform cameraTransform;
@@ -48,6 +52,7 @@ public class FirstPersonController : MonoBehaviour {
 
 	void Start ()
     {
+        parentRB = GetComponentInParent<Rigidbody>();
         Cursor.visible = showCursor;
         if (!showCursor) Cursor.lockState = CursorLockMode.Locked;
         changingCamera = false;
@@ -58,11 +63,14 @@ public class FirstPersonController : MonoBehaviour {
         cameraTransform = this.gameObject.transform.GetChild(0);
         cameraTransform.forward = transform.forward;
 
+        upMovement = 0;
+
         rb = GetComponent<Rigidbody>();
 	}
 	
-	void Update ()
+	void FixedUpdate ()
     {
+        rb.velocity = Vector3.zero;
         if (!changingCamera)
         {
             GroundCheck();
@@ -105,8 +113,26 @@ public class FirstPersonController : MonoBehaviour {
     void GroundCheck()
     {
         //Check if on ground
-        float distToGround = 1.2f;
+        float distToGround = 0.5f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround);
+        canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * 3.0f);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 8.0f);
+
+        onSlope = false;
+        foreach (RaycastHit h in hits)
+        {
+            
+            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 45 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
+            {
+                Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
+                onSlope = true;
+                break;
+            }
+
+        }
+        //
+        //
+        //grounded = Physics.BoxCast(transform.position, new Vector3(0.5f, 0.2f, 0.5f), gravityDirection, new Quaternion(0, 0, 0, 0), distToGround);
 
         //Move towards platforms
         if (!grounded)
@@ -134,9 +160,16 @@ public class FirstPersonController : MonoBehaviour {
     {
         //Jumping
 
-        /*if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
-        else */if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
-        else yMovement = CurrentUpVelocity();
+        ///*if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
+        //else */if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
+        //else yMovement = CurrentUpVelocity();
+
+        if (upMovement < -maxGravity) upMovement = -maxGravity;
+
+        if (!grounded && !onSlope) upMovement -= gravity;
+        else if (!canJump && onSlope && upMovement <= 0 && !Input.GetButton("Jump")) { upMovement -= gravity * 12; Debug.Log("Extra Gravity"); }
+        else upMovement = 0;
+        if (canJump && Input.GetButton("Jump")) upMovement = jumpPower;
         
 
         //Walking
@@ -209,7 +242,8 @@ public class FirstPersonController : MonoBehaviour {
             forward.y * DoubleAbs(gravityDirection.y),
             forward.z * DoubleAbs(gravityDirection.z)) * zMovement * movementSpeed;
 
-        rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity); 
+        //rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity);  
+        transform.position += sideMovement + forwardMovement + yMovement + (-gravityDirection * upMovement);// + (gravityDirection * gravity);
     }
 
     Vector3 CurrentUpVelocity() 
