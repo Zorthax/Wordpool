@@ -118,7 +118,7 @@ public class FirstPersonController : MonoBehaviour {
         float distToGround = 1.0f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
         canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * 1.5f, 1, QueryTriggerInteraction.Ignore);
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 3.0f, 1, QueryTriggerInteraction.Ignore);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 2.0f, 1, QueryTriggerInteraction.Ignore);
 
         onSlope = false;
         foreach (RaycastHit h in hits)
@@ -164,9 +164,10 @@ public class FirstPersonController : MonoBehaviour {
 
         if (upMovement < -maxGravity) upMovement = -maxGravity;
 
-        if (!grounded) upMovement -= gravity;
+        if (!grounded && !onSlope) upMovement -= gravity;
         else if (!canJump && onSlope && upMovement <= 0 && !Input.GetButton("Jump")) { upMovement -= gravity * 12; Debug.Log("Extra Gravity"); }
         else upMovement = 0;
+
         if (canJump && Input.GetButton("Jump")) upMovement = jumpPower;
         
 
