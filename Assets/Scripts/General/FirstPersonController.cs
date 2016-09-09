@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FirstPersonController : MonoBehaviour {
+public class FirstPersonController : MonoBehaviour
+{
 
     [Header("Camera Variables")]
     public bool showCursor = true;
@@ -23,43 +24,58 @@ public class FirstPersonController : MonoBehaviour {
     public float jumpPower = 10;
     public float speedInAirMultiplier = 1.0f;
     public bool sprintInAir;
-    public float gravity = 9.18f;
+    public float gravity = 0.25f;
+    public float maxGravity = 2;
+    public float platformAssistHeight;
+    public float platformAssistSensitivity;
+
+    public float timeUntilGravityReset = 2;
+    float resetDelay;
 
 
     float cameraYAngle;
     bool grounded;
     bool onSlope;
+    bool canJump;
     float bobEvening;
     float xMovement;
     Vector3 yMovement;
+    float upMovement;
     float zMovement;
     bool changingCamera;
     Vector3 previousUp;
     Vector3 previousRight;
     Vector3 previousForward;
     Vector3 newUp;
+    Vector3 tempRight;
+    Rigidbody parentRB;
 
     public Vector3 gravityDirection = new Vector3(0, -1, 0);
     Transform cameraTransform;
     Rigidbody rb;
 
-	void Start ()
+    void Start()
     {
+        parentRB = GetComponentInParent<Rigidbody>();
         Cursor.visible = showCursor;
         if (!showCursor) Cursor.lockState = CursorLockMode.Locked;
         changingCamera = false;
 
         //gravityDirection = new Vector3(0, 0, 1);
-        transform.up = gravityDirection;
+        transform.up = -gravityDirection;
         //transform.rotation = Quaternion.Euler(gravityDirection * 90);
         cameraTransform = this.gameObject.transform.GetChild(0);
         cameraTransform.forward = transform.forward;
 
+        upMovement = 0;
+        resetDelay = timeUntilGravityReset;
+
         rb = GetComponent<Rigidbody>();
-	}
-	
-	void Update ()
+    }
+
+    void FixedUpdate()
     {
+        rb.velocity = Vector3.zero;
         if (!changingCamera)
         {
             GroundCheck();
@@ -70,11 +86,17 @@ public class FirstPersonController : MonoBehaviour {
         {
             FixCamera();
         }
-        
 
+    }
+
+    void Update()
+    {
         //Keep camera at player position
-        cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.1f);
-        
+        cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.05f);
+
+        if (!grounded && !canJump && !onSlope && resetDelay > 0) { resetDelay -= Time.deltaTime; }
+        else if (grounded || canJump || onSlope) { resetDelay = timeUntilGravityReset; }
+        else { gravityDirection = (new Vector3(0, -1, 0)); }
     }
 
     public Vector3 CameraBobHeight()
@@ -84,7 +106,7 @@ public class FirstPersonController : MonoBehaviour {
             if (xMovement != 0 || zMovement != 0)
             {
                 bobEvening = Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed));
-                if (Input.GetButton("Sprint") && grounded)
+                if ((Input.GetButton("Sprint") || Input.GetAxis("Sprint") != 0) && grounded)
                     return MultiplyByGravity(Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed * sprintMultiplier)) * bobbingHeight);
                 else
                     return MultiplyByGravity(Mathf.Abs(Mathf.Sin(Time.timeSinceLevelLoad * bobbingSpeed)) * bobbingHeight);
@@ -101,21 +123,60 @@ public class FirstPersonController : MonoBehaviour {
 
     void GroundCheck()
     {
-        //Raycast downwards
-        float distToGround = 1.2f;
-        grounded = Physics.Raycast(transform.position, gravityDirection, distToGround);
-        
+        //Check if on ground
+        float distToGround = 1.01f;
+        grounded = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
+        canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * (1.0f + (jumpPower * 5)), 1, QueryTriggerInteraction.Ignore);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 2.0f, 1, QueryTriggerInteraction.Ignore);
+
+        onSlope = false;
+        foreach (RaycastHit h in hits)
+        {
+            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 60 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
+            {
+                Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
+                onSlope = true;
+                break;
+            }
+        }
+
+        //Move towards platforms
+        if (!grounded)
+        {
+            RaycastHit[] all = Physics.RaycastAll(transform.position, gravityDirection, platformAssistHeight);
+
+            foreach (RaycastHit h in all)
+            {
+                if (h.transform.tag == "Platform Assist" && rb.velocity.y < 0)
+                {
+                    Debug.Log(DoubleAbs(gravityDirection.y));
+                    Vector3 diff = transform.position - h.transform.position;
+                    transform.position = Vector3.MoveTowards(transform.position,
+                        new Vector3(transform.position.x - (diff.x * DoubleAbs(gravityDirection.x)),
+                        transform.position.y - (diff.y * DoubleAbs(gravityDirection.y)),
+                        transform.position.z - (diff.z * DoubleAbs(gravityDirection.z))),
+                        platformAssistSensitivity);
+                }
+            }
+        }
+
     }
 
     void PlayerMovement()
     {
         //Jumping
 
-        if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
-        else if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
-        //else if (grounded) yMovement = gravityDirection * 1.4f;
-        else yMovement = CurrentUpVelocity();
-        
+        ///*if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
+        //else */if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
+        //else yMovement = CurrentUpVelocity();
+
+        if (upMovement < -maxGravity) upMovement = -maxGravity;
+
+        if (!grounded && !onSlope) upMovement -= gravity;
+        else if (!canJump && onSlope && upMovement <= 0 && !Input.GetButton("Jump")) { upMovement -= gravity * 12; Debug.Log("Extra Gravity"); }
+        else upMovement = 0;
+
+        if (canJump && Input.GetButton("Jump")) upMovement = jumpPower;
 
         //Walking
         xMovement = Input.GetAxis("Horizontal");
@@ -130,7 +191,7 @@ public class FirstPersonController : MonoBehaviour {
             xMovement /= 2;
             zMovement /= 2;
         }
-        if (Input.GetButton("Sprint") && !(!sprintInAir && !grounded)) //Sprinting
+        if ((Input.GetButton("Sprint") || Input.GetAxis("Sprint") != 0) && !(!sprintInAir && !grounded)) //Sprinting
         {
             xMovement *= sprintMultiplier;
             zMovement *= sprintMultiplier;
@@ -170,7 +231,7 @@ public class FirstPersonController : MonoBehaviour {
         transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 1.0f);
 
         cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
-            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);     
+            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
     }
 
     void ApplyVelocity()
@@ -180,17 +241,18 @@ public class FirstPersonController : MonoBehaviour {
 
         Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right; //Alternative to camera's forward
         //Move based on camera's angle and gravity direction
-        sideMovement = new Vector3(cameraTransform.right.x * DoubleAbs(gravityDirection.x), 
-            cameraTransform.right.y * DoubleAbs(gravityDirection.y), 
+        sideMovement = new Vector3(cameraTransform.right.x * DoubleAbs(gravityDirection.x),
+            cameraTransform.right.y * DoubleAbs(gravityDirection.y),
             cameraTransform.right.z * DoubleAbs(gravityDirection.z)) * xMovement * movementSpeed;
         forwardMovement = new Vector3(forward.x * DoubleAbs(gravityDirection.x),
             forward.y * DoubleAbs(gravityDirection.y),
             forward.z * DoubleAbs(gravityDirection.z)) * zMovement * movementSpeed;
 
-        rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity); 
+        //rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity);  
+        transform.position += sideMovement + forwardMovement + yMovement + (-gravityDirection * upMovement);// + (gravityDirection * gravity);
     }
 
-    Vector3 CurrentUpVelocity() 
+    Vector3 CurrentUpVelocity()
     {
         //return new Vector3(Mathf.Abs(rb.velocity.x) * (gravityDirection.x), Mathf.Abs(rb.velocity.y) * (gravityDirection.y), Mathf.Abs(rb.velocity.z) * (gravityDirection.z));
         float x, y, z;
@@ -212,7 +274,8 @@ public class FirstPersonController : MonoBehaviour {
     {
         //0 will equal 1
         //1 and -1 will equal 0
-        return Mathf.Abs(Mathf.Abs(num - 1));
+        //Good for movement at different perspectives/angles
+        return Mathf.Abs(Mathf.Abs(num) - 1);
     }
 
     void OnTriggerEnter(Collider other)
@@ -223,19 +286,16 @@ public class FirstPersonController : MonoBehaviour {
             previousRight = cameraTransform.right;
             gravityDirection = -other.transform.up;
 
+
             changingCamera = true;
         }
     }
 
     void FixCamera()
     {
-        /*Vector3 forward = Quaternion.AngleAxis(-90, transform.up) * cameraTransform.right;
-        //transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
-        transform.up = -gravityDirection;
-        //cameraTransform.right = previousRight;
-        Vector3 newRight = Quaternion.AngleAxis(-90, forward) * previousRight;
-        forward = Quaternion.AngleAxis(-90, transform.up) * newRight;
-        cameraTransform.forward = Vector3.MoveTowards(cameraTransform.forward, forward, 0.1f);
-        if (cameraTransform.forward == forward)*/ changingCamera = false;
+
+        transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
+        if (transform.up == -gravityDirection) changingCamera = false;
+
     }
 }
