@@ -102,6 +102,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.99905205, z: 0, w: -0.043532368}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 458630}
   m_Father: {fileID: 467512}
@@ -112,9 +113,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179696}
-  m_LocalRotation: {x: 0, y: 0.043532204, z: 0, w: 0.99905205}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.16502729, z: 0, w: 0.986289}
+  m_LocalPosition: {x: -0.4, y: -0.453, z: 0.5}
   m_LocalScale: {x: 0.19999994, y: 0.25, z: 0.009999998}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 22415908}
   m_Father: {fileID: 422922}
@@ -125,9 +127,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110690}
-  m_LocalRotation: {x: 0, y: 0.99905205, z: 0, w: -0.043532368}
-  m_LocalPosition: {x: 0, y: 6.26, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 150.045, y: 19.47, z: -8.762}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 422922}
   m_Father: {fileID: 0}
@@ -175,17 +178,20 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -201,17 +207,20 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -244,9 +253,9 @@ Rigidbody:
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 1
 --- !u!81 &8139754
 AudioListener:
   m_ObjectHideFlags: 1
@@ -322,9 +331,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carriedObject: {fileID: 0}
-  throwForce: 0
-  distance: 0
-  smooth: 0
+  throwForce: 3
+  distance: 2
+  smooth: 5
   speed: 0
   height: 0
   regrabDelay: 0.5
@@ -342,23 +351,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef140c22124fa34fae0da430f12d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showCursor: 0
+  showCursor: 1
   yOrigin: 0
   mouseXSensitivity: 4
   mouseYSensitivity: 2
-  mouseYMax: 320
-  mouseYMin: 30
+  mouseYMax: 280
+  mouseYMin: 60
   invertMouseX: 0
   invertMouseY: 0
-  headBobbing: 1
-  bobbingHeight: 0.3
+  headBobbing: 0
+  bobbingHeight: 0.1
   bobbingSpeed: 5
-  movementSpeed: 15
+  movementSpeed: 0.1
   sprintMultiplier: 2
-  jumpPower: 8
+  jumpPower: 0.1
   speedInAirMultiplier: 1
   sprintInAir: 0
-  gravity: 0.25
+  gravity: 0.01
+  maxGravity: 0.3
+  platformAssistHeight: 0
+  platformAssistSensitivity: 0
+  timeUntilGravityReset: 1
   gravityDirection: {x: 0, y: -1, z: 0}
 --- !u!114 &11477898
 MonoBehaviour:
@@ -372,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notepad: {fileID: 458630}
-  position: {x: -0.5, y: -0.2, z: 0.5}
+  position: {x: -0.4, y: -0.206, z: 0.5}
   moveSpeed: 0.1
   sentence: 
   text: {fileID: 11405568}
@@ -438,6 +451,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -450,6 +464,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 22452152}
   m_Father: {fileID: 458630}
@@ -468,6 +483,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 22415908}
   m_RootOrder: 0
