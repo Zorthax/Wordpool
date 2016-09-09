@@ -123,7 +123,7 @@ public class FirstPersonController : MonoBehaviour {
     void GroundCheck()
     {
         //Check if on ground
-        float distToGround = 1.0f;
+        float distToGround = 1.01f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
         canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * (1.0f + (jumpPower * 5)), 1, QueryTriggerInteraction.Ignore);
         RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 2.0f, 1, QueryTriggerInteraction.Ignore);
@@ -137,7 +137,6 @@ public class FirstPersonController : MonoBehaviour {
                 onSlope = true;
                 break;
             }
-        
         }
 
         //Move towards platforms
@@ -177,7 +176,6 @@ public class FirstPersonController : MonoBehaviour {
         else upMovement = 0;
 
         if (canJump && Input.GetButton("Jump")) upMovement = jumpPower;
-        
 
         //Walking
         xMovement = Input.GetAxis("Horizontal");
@@ -200,15 +198,15 @@ public class FirstPersonController : MonoBehaviour {
         ApplyVelocity();
 
         //Slope checking
-        //Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
-        //RaycastHit hit;
-        //if (Physics.Raycast(knee, rb.velocity, out hit, 1.0f)) //cast in direction of movement
-        //{
-        //    if (Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f) //check angle of object hit by raycast
-        //    {
-        //        rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
-        //    }
-        //}
+        Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
+        RaycastHit hit;
+        if (Physics.Raycast(knee, rb.velocity, out hit, 1.0f)) //cast in direction of movement
+        {
+            if (Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f) //check angle of object hit by raycast
+            {
+                rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
+            }
+        }
     }
 
     void CameraMovement()
