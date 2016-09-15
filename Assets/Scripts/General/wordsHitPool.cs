@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class wordsHitPool : MonoBehaviour 
@@ -26,10 +27,11 @@ public class wordsHitPool : MonoBehaviour
         if (obj == null)
             return;
         //figure out what is going to happen with quit object
-        if (obj.PhaseTrigger != null && obj.PhaseTrigger.name == "Quit")
+        if (obj.backToHub)
         {
             obj.gameObject.SetActive(false);
-            Application.Quit();
+            SceneManager.LoadSceneAsync(0);
+            return;
         }
 
         if (obj.PhaseTrigger != null)

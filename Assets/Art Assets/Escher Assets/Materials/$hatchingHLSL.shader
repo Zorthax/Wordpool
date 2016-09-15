@@ -6,6 +6,7 @@ Shader "Custom/Hatching" {
 	_Hatch3("Hatch 3", 2D) = "white" {}
 	_Hatch4("Hatch 4", 2D) = "white" {}
 	_Hatch5("Hatch 5", 2D) = "white" {}
+	_Color("Color", Color) = (1, 1, 1, 1)
 	}
 		SubShader{
 		Tags{ "RenderType" = "Opaque" }
@@ -19,6 +20,7 @@ Shader "Custom/Hatching" {
 	sampler2D _Hatch3;
 	sampler2D _Hatch4;
 	sampler2D _Hatch5;
+	half4 _Color;
 
 	half4 LightingSimpleLambert(inout SurfaceOutput s, half3 lightDir, half atten)
 	{
@@ -71,6 +73,7 @@ Shader "Custom/Hatching" {
 			temp *= 6;
 			c.rgb = lerp(tex2D(_Hatch5, uv), 1, temp);
 		}
+		c.rgb = c.rgb * _Color.rgb;
 
 		return c;
 	}
