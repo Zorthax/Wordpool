@@ -7,11 +7,11 @@ public class PickupObject : MonoBehaviour {
 	GameObject mainCamera;
 	bool carrying;
 	public GameObject carriedObject;
-	public float throwForce;
     public Vector3 position;
 	public float smooth;
 	public float speed;
-	public float height;
+    public float throwForce;
+    public float throwHeight;
 	public float regrabDelay=0.5f;
 	public float grabDistance=5f;
 	public AudioSource oneTimeSoundSource;
@@ -30,7 +30,7 @@ public class PickupObject : MonoBehaviour {
 		if (CrossPlatformInputManager.GetButtonDown("Throw")) {
 			carrying = false;
 			carriedObject.GetComponent<Rigidbody>().useGravity = true;
-			carriedObject.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(0,height,speed));
+			carriedObject.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * throwForce + Camera.main.transform.up * throwHeight;
             carriedObject = null;
         }
 
