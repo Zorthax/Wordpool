@@ -8,7 +8,7 @@ public class PickupObject : MonoBehaviour {
 	bool carrying;
 	public GameObject carriedObject;
 	public float throwForce;
-	public float distance;
+    public Vector3 position;
 	public float smooth;
 	public float speed;
 	public float height;
@@ -53,11 +53,13 @@ public class PickupObject : MonoBehaviour {
 
 	void Carry(GameObject obj) {
 		obj.GetComponent<Rigidbody>().velocity=Vector3.zero;
-		//obj.transform.position = Vector3.Lerp(obj.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
+        //obj.transform.position = Vector3.Lerp(obj.transform.position, mainCamera.transform.position + mainCamera.transform.forward * distance, Time.deltaTime * smooth);
 
-		Vector3 direct = (mainCamera.transform.position + mainCamera.transform.forward * distance) - obj.transform.position;
+        Vector3 positionOnScreen = Camera.main.transform.forward * position.z + Camera.main.transform.right * position.x + Camera.main.transform.up * position.y;
+
+        Vector3 direct = (mainCamera.transform.position + positionOnScreen) - obj.transform.position;
 		direct.Normalize ();
-		obj.GetComponent<Rigidbody>().velocity=direct * smooth*Vector3.Distance(mainCamera.transform.position + mainCamera.transform.forward * distance, obj.transform.position);                                                  
+		obj.GetComponent<Rigidbody>().velocity = direct * smooth * Vector3.Distance(mainCamera.transform.position + positionOnScreen, obj.transform.position);                                                  
 		// stop picked up object rotating 
 		obj.transform.rotation = Quaternion.identity; 
 
