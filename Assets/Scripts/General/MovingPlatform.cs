@@ -5,9 +5,8 @@ public class MovingPlatform : MonoBehaviour {
 
     Vector3 start;
     public Vector3 end;
-    bool reached = false;
     GameObject player;
-    public float speed;
+    public float timeToTravel;
 
     //Unused function for previous moving platform attempts
     //void movePlatform(Vector3 pos, Vector3 movePosition, float speed)
@@ -28,6 +27,20 @@ public class MovingPlatform : MonoBehaviour {
 	
 	//Update is called once per frame
 	void Update () {
+        float loops = 2 * timeToTravel;
+        float t = Time.time;
+        int numLoops = (int)(t / loops);
+        float remainder = t - loops * numLoops;
+
+        float lerpValue = remainder / timeToTravel;
+        if (lerpValue > 1)
+            lerpValue = 2.0f - lerpValue;
+
+        transform.position = Vector3.Lerp(start, end, lerpValue);
+        /*
+        //old moving platform code that works at a basic level but has numerical inaccuracies overtime with other platforms
+        //code above is improved to stay consistent in its movement using lerp to move
+        //the platforms.
         if (!reached)
         {
             //finds distance between where the platform is to its end point
@@ -56,7 +69,7 @@ public class MovingPlatform : MonoBehaviour {
                 reached = false;
             }
         }
-
+        */
         /*
         //code using MovePosition above to translate the position of the platform between two positions
         //player doesnt stick to the platform when it is moving so the player has to keep up with the platform
@@ -100,12 +113,6 @@ public class MovingPlatform : MonoBehaviour {
             //Vector3 position = this.transform.position - other.transform.position;
             //player.transform.position = player.transform.position + position;
         }
-		//Objective trigger enter added
-		if (other.transform.tag == "WordPickup")
-		{
-			other.transform.parent = this.transform;
-		}
-
     }
 
     void OnTriggerExit(Collider other)
@@ -115,9 +122,6 @@ public class MovingPlatform : MonoBehaviour {
             other.transform.parent = null;
             //other.transform.localScale = new Vector3(1, 1, 1);
         }
-		//Objective trigger exit added
-		if (other.transform.tag == "WordPickup")
-			other.transform.parent = null;
     }
 
     //void OnTriggerEnter(Collider other)
