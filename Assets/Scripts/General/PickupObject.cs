@@ -31,6 +31,8 @@ public class PickupObject : MonoBehaviour {
 			carrying = false;
 			carriedObject.GetComponent<Rigidbody>().useGravity = true;
 			carriedObject.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * throwForce + Camera.main.transform.up * throwHeight;
+            carriedObject.GetComponent<Collider>().isTrigger = false;
+            carriedObject.gameObject.layer = 0;
             carriedObject = null;
         }
 
@@ -89,6 +91,9 @@ public class PickupObject : MonoBehaviour {
 					carriedObject = p.gameObject;
 					p.gameObject.GetComponent<Rigidbody>().useGravity = false;
 					p.gameObject.GetComponent<Rigidbody>().velocity=Vector3.zero;
+                    p.GetComponent<Collider>().isTrigger = true;
+                    p.gameObject.layer = 8;
+                    
 					rot = p.gameObject.transform.rotation;
 				}
 			}
@@ -105,7 +110,9 @@ public class PickupObject : MonoBehaviour {
 	public void DropObject() {
 		carrying = false;
 		carriedObject.GetComponent<Rigidbody>().useGravity = true;
-		carriedObject = null;
+        carriedObject.GetComponent<Collider>().isTrigger = false;
+        carriedObject.gameObject.layer = 0;
+        carriedObject = null;
 		grabDelay = regrabDelay;
 	}
 }
