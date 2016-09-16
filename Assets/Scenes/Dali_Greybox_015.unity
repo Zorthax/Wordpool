@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 307.046, y: 39.61062, z: 212.7473}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &3793013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3526,7 +3526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 278.74, y: 45.02, z: 144.2}
-  timeToTravel: 0
+  timeToTravel: 5
 --- !u!65 &55713351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4528,7 +4528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 279.02, y: 37.53, z: 179.63}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &93073728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5245,6 +5245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1729260846}
   OppositeWordOff: {fileID: 1900837343}
+  backToHub: 0
   replaceSentence: 0
   sentence: 'roses. In the distance are '
 --- !u!1 &103369724
@@ -7117,7 +7118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 266, y: 55.1, z: 209.8}
-  timeToTravel: 0
+  timeToTravel: 10
 --- !u!65 &136516613
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8846,6 +8847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 1145415371}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!1 &160471051
@@ -9284,7 +9286,6 @@ GameObject:
   - 33: {fileID: 167411388}
   - 23: {fileID: 167411387}
   - 65: {fileID: 167411386}
-  - 65: {fileID: 167411385}
   m_Layer: 0
   m_Name: Rose (38)
   m_TagString: Untagged
@@ -9305,18 +9306,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 333720436}
   m_RootOrder: 17
---- !u!65 &167411385
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 167411383}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2.4951036, z: 1.0000001}
-  m_Center: {x: 0.00004125342, y: 0.24751487, z: 0.000018559162}
 --- !u!65 &167411386
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11052,7 +11041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 283.6, y: 33.5, z: 158.5}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &201457156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16269,7 +16258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 288.81, y: 39.87, z: 206.7}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &305235675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18038,7 +18027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 287.65, y: 33.01, z: 170.23}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &327631491
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18303,7 +18292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 287.88, y: 19.75, z: 185.83}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &329870340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18485,6 +18474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1420769724}
   OppositeWordOff: {fileID: 1934089895}
+  backToHub: 0
   replaceSentence: 0
   sentence: 'faces. On the shores are '
 --- !u!1 &332754163
@@ -18790,13 +18780,12 @@ Transform:
   - {fileID: 687500959}
   - {fileID: 800843704}
   - {fileID: 201457154}
-  - {fileID: 598780770}
   - {fileID: 472716511}
   - {fileID: 795236561}
   - {fileID: 2101591431}
   - {fileID: 592415253}
   m_Father: {fileID: 1729260847}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &333866205
 GameObject:
   m_ObjectHideFlags: 0
@@ -21560,7 +21549,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 395651442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 232.3, y: 19.54, z: 172.3}
+  m_LocalPosition: {x: 232.3, y: 19.21, z: 172.3}
   m_LocalScale: {x: 5.3899727, y: 0.26317218, z: 5.2323585}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -21590,7 +21579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 228.67, y: 19.54, z: 163.86}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &395651446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26267,7 +26256,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -6.643, y: -87.747, z: -10.576}
   m_Children: []
   m_Father: {fileID: 333720436}
-  m_RootOrder: 39
+  m_RootOrder: 38
 --- !u!65 &472716512
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33020,7 +33009,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 333720436}
-  m_RootOrder: 42
+  m_RootOrder: 41
 --- !u!114 &592415254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33033,7 +33022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 175.62, y: 40.88, z: 125.28}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &592415255
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33494,13 +33483,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 598780769}
-  m_LocalRotation: {x: -0.012501687, y: 0.6816634, z: -0.010834625, w: -0.73147887}
-  m_LocalPosition: {x: 322.71, y: 25.62, z: 165.42}
-  m_LocalScale: {x: 7.5265284, y: 1.0344065, z: 6.9983845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 322.71, y: 25.63, z: 165.42}
+  m_LocalScale: {x: 7.5265274, y: 1.0344065, z: 6.9983845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 333720436}
-  m_RootOrder: 38
+  m_Father: {fileID: 1729260847}
+  m_RootOrder: 11
 --- !u!65 &598780771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34692,6 +34681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 930454747}
   OppositeWordOff: {fileID: 1564766133}
+  backToHub: 0
   replaceSentence: 0
   sentence: 'faces.On the shores are '
 --- !u!1 &612426333
@@ -34807,6 +34797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 915718494}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!65 &615087836
@@ -35112,7 +35103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 173.4631, y: 47.95234, z: 144.2797}
-  timeToTravel: 0
+  timeToTravel: 6
 --- !u!65 &617851486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36941,7 +36932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 238.82, y: 19.12, z: 133.03}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &643815780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39364,6 +39355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 828091475}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!1 &676074504
@@ -39820,7 +39812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 268.4, y: 64.8, z: 170.3}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &684278667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40084,7 +40076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 236.66, y: 31.5, z: 153.67}
-  timeToTravel: 0
+  timeToTravel: 5
 --- !u!65 &687206642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43505,7 +43497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 244.94, y: 18.25, z: 144.32}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &731152628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46975,7 +46967,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 333720436}
-  m_RootOrder: 40
+  m_RootOrder: 39
 --- !u!114 &795236562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46988,7 +46980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 299.05, y: 40.31, z: 122.41}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &795236563
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48160,7 +48152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 247.84, y: 17.2, z: 183.21}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &823641245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48562,6 +48554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 675425493}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!1 &828305852
@@ -49632,7 +49625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 222.1, y: 19.51, z: 133.9}
-  timeToTravel: 0
+  timeToTravel: 1
 --- !u!65 &846477971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49816,7 +49809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 283.69, y: 18.6, z: 181.03}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &850678701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50826,7 +50819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 292.76, y: 43.4, z: 137.99}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!1 &866550194
 GameObject:
   m_ObjectHideFlags: 0
@@ -54086,6 +54079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 615087834}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!65 &915718497
@@ -56568,6 +56562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 1482831265}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!114 &972367883
@@ -61287,7 +61282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 325.75, y: 47.36, z: 138.28}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &1052732210
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64685,7 +64680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 228.97, y: 18.68, z: 145.08}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &1114362813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64880,7 +64875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 307.81, y: 25.36, z: 159.83}
-  timeToTravel: 0
+  timeToTravel: 2.5
 --- !u!1 &1116867390
 GameObject:
   m_ObjectHideFlags: 0
@@ -66313,6 +66308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1000212740}
   OppositeWordOff: {fileID: 159552247}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!54 &1145415378
@@ -67078,7 +67074,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1160405027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260.1, y: 15.9, z: 164.5}
+  m_LocalPosition: {x: 260.1, y: 15.38, z: 164.5}
   m_LocalScale: {x: 35.628662, y: 1.9927025, z: 35.281906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -73091,7 +73087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 305.13, y: 20.25, z: 188.17}
-  timeToTravel: 0
+  timeToTravel: 5
 --- !u!65 &1264180579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79718,7 +79714,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1384043333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260.1, y: 18.29919, z: 164.5}
+  m_LocalPosition: {x: 260.1, y: 17.78, z: 164.5}
   m_LocalScale: {x: 13.794275, y: 0.28364873, z: 12.428058}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -84137,7 +84133,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1465262708}
   m_LocalRotation: {x: 0.16295242, y: 0.6428395, z: 0.23441526, w: -0.7108118}
-  m_LocalPosition: {x: 173.8, y: 40.8, z: 168.7}
+  m_LocalPosition: {x: 203.8, y: 87.1, z: 172.6}
   m_LocalScale: {x: 4.0342507, y: 0.55444586, z: 3.7511628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -84435,7 +84431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 196.9, y: 126.4, z: 231.4}
-  timeToTravel: 0
+  timeToTravel: 10
 --- !u!65 &1468784559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85563,6 +85559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1546780850}
   OppositeWordOff: {fileID: 972367881}
+  backToHub: 0
   replaceSentence: 0
   sentence: 
 --- !u!65 &1482831268
@@ -86333,7 +86330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 222.87, y: 22.84, z: 181.07}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &1489267382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -90693,7 +90690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 244.94, y: 18.25, z: 144.32}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &1557728125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91301,6 +91298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1767448950}
   OppositeWordOff: {fileID: 610255857}
+  backToHub: 0
   replaceSentence: 0
   sentence: 'butterflies. On the shores are '
 --- !u!1 &1565617819
@@ -92605,7 +92603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 217.23, y: 108.35, z: 125.53}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &1586697540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -92723,7 +92721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 292.76, y: 43.4, z: 137.99}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &1587123908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93252,7 +93250,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1600889963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 237.77, y: 18.6, z: 164.5}
+  m_LocalPosition: {x: 237.77, y: 18.06, z: 164.5}
   m_LocalScale: {x: 8.752711, y: 0.26317218, z: 10.712102}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -94615,7 +94613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 236.66, y: 31.5, z: 153.67}
-  timeToTravel: 0
+  timeToTravel: 5
 --- !u!65 &1625047004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100316,7 +100314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 283.97, y: 38.01, z: 139.4}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &1720729428
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100663,7 +100661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1729260847
 Transform:
   m_ObjectHideFlags: 0
@@ -100686,6 +100684,7 @@ Transform:
   - {fileID: 715560524}
   - {fileID: 112826311}
   - {fileID: 99510037}
+  - {fileID: 598780770}
   - {fileID: 333720436}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -103722,7 +103721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 142.6, y: 45.3, z: 178.4}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &1789300943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -105289,7 +105288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 287.716, y: 71.84062, z: 222.8273}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &1814699562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109055,7 +109054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 213.8, y: 98.2, z: 193.9}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &1871337738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109337,7 +109336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 222.1, y: 19.51, z: 133.9}
-  timeToTravel: 0
+  timeToTravel: 1
 --- !u!65 &1877790339
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109948,7 +109947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 303.31, y: 20.73, z: 172.31}
-  timeToTravel: 0
+  timeToTravel: 5
 --- !u!23 &1883418354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -110636,6 +110635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1743796215}
   OppositeWordOff: {fileID: 102141593}
+  backToHub: 0
   replaceSentence: 0
   sentence: 'clocks. In the distance are '
 --- !u!1 &1904331969
@@ -110922,7 +110922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 220.15, y: 53.44, z: 123.48}
-  timeToTravel: 0
+  timeToTravel: 6
 --- !u!65 &1907170487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112303,6 +112303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1626682329}
   OppositeWordOff: {fileID: 331143138}
+  backToHub: 0
   replaceSentence: 0
   sentence: 'butterflies. On the shores are '
 --- !u!1 &1934920399
@@ -113434,7 +113435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 301.05, y: 18.36, z: 178.53}
-  timeToTravel: 0
+  timeToTravel: 2.5
 --- !u!23 &1956994888
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115536,7 +115537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 283.97, y: 38.01, z: 139.4}
-  timeToTravel: 0
+  timeToTravel: 4
 --- !u!65 &1994276535
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121127,7 +121128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 251.79, y: 21.89925, z: 185.78}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &2101529534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121202,12 +121203,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2101591430}
   m_LocalRotation: {x: 0.007353254, y: 0.7130989, z: -0.02461063, w: -0.70059276}
-  m_LocalPosition: {x: 141.3, y: 41.2, z: 170.6}
+  m_LocalPosition: {x: 172.1, y: 42, z: 171.1}
   m_LocalScale: {x: 28.379139, y: 4.6076474, z: 26.38774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 333720436}
-  m_RootOrder: 41
+  m_RootOrder: 40
 --- !u!65 &2101591432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -121592,7 +121593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 251.79, y: 21.89925, z: 185.78}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &2104386092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122457,7 +122458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 228.97, y: 18.68, z: 145.08}
-  timeToTravel: 0
+  timeToTravel: 3
 --- !u!65 &2118607633
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123267,7 +123268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   end: {x: 238.82, y: 19.12, z: 133.03}
-  timeToTravel: 0
+  timeToTravel: 2
 --- !u!65 &2134749811
 BoxCollider:
   m_ObjectHideFlags: 0
