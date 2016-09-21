@@ -8399,10 +8399,34 @@ Prefab:
         type: 2}
     - target: {fileID: 11435454, guid: 5848fb406a81e414594d54a70047551d, type: 2}
       propertyPath: headBobbing
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5447442, guid: 5848fb406a81e414594d54a70047551d, type: 2}
       propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: position.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: position.y
+      value: -0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: position.z
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: throwHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: throwForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447442, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -21214,68 +21238,6 @@ Transform:
   - {fileID: 912556998}
   m_Father: {fileID: 1503627058}
   m_RootOrder: 0
---- !u!1 &389398134
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 389398137}
-  - 114: {fileID: 389398136}
-  - 114: {fileID: 389398135}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &389398135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 389398134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &389398136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 389398134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 5
---- !u!4 &389398137
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 389398134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
 --- !u!1 &389780301
 GameObject:
   m_ObjectHideFlags: 0
@@ -60765,8 +60727,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOfScreen: 0
-  paintingWidth: 450
-  paintingHeight: 600
+  paintingWidth: 400
+  paintingHeight: 400
+  savedTexture: {fileID: 0}
 --- !u!4 &1047680755
 Transform:
   m_ObjectHideFlags: 0
@@ -110590,7 +110553,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1900837343}
   m_LocalRotation: {x: 0, y: 0.9483736, z: 0, w: 0.3171553}
-  m_LocalPosition: {x: 325.41, y: 26.91, z: 176.71}
+  m_LocalPosition: {x: 258.6, y: 18.5, z: 172.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -110635,7 +110598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PhaseTrigger: {fileID: 1743796215}
   OppositeWordOff: {fileID: 102141593}
-  backToHub: 0
+  backToHub: 1
   replaceSentence: 0
   sentence: 'clocks. In the distance are '
 --- !u!1 &1904331969
