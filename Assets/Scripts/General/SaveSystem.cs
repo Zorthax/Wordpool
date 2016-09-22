@@ -16,6 +16,8 @@ public class SaveSystem : MonoBehaviour {
     int currentSave = 0;
 
     static Texture2D[] daliTextures;
+    static bool[] daliPhases;
+    static GameObject daliObject;
     GameObject[] daliPaintings;
 
     public Texture2D savedTexture;
@@ -32,6 +34,10 @@ public class SaveSystem : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        daliObject = GameObject.Find("Dali Phases");
+        if (daliObject != null)
+            daliObject.GetComponent<DaliPhases>().LoadPhases(daliPhases);
+
 
         searchForPaintings = true;   
     }
@@ -130,5 +136,11 @@ public class SaveSystem : MonoBehaviour {
         }
 
         
+    }
+
+    public void SavePhases()
+    {
+        if (daliObject != null)
+            daliPhases = daliObject.GetComponent<DaliPhases>().SavePhases();
     }
 }
