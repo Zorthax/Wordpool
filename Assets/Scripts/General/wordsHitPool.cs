@@ -36,7 +36,8 @@ public class wordsHitPool : MonoBehaviour
 
         if (obj.PhaseTrigger != null)
             obj.PhaseTrigger.SetActive(true);
-        obj.OppositeWordOff.SetActive(false);
+        if (obj.OppositeWordOff != null)
+            obj.OppositeWordOff.SetActive(false);
 
         if (obj.changeMaterial)
         {
