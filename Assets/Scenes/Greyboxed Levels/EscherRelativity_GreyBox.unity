@@ -8165,23 +8165,23 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &669058782
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669058781}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.44083, y: 17.518505, z: -10.708609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.215683, y: 1.5606232, z: 2.8584442}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1425142175}
   - {fileID: 251305842}
   - {fileID: 972865313}
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 1435794875}
+  m_RootOrder: 0
 --- !u!4 &671760905 stripped
 Transform:
   m_PrefabParentObject: {fileID: 455012, guid: 7e10bc4b9bea3a641b3f095372555c3a, type: 2}
@@ -12395,8 +12395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f05cdbbc9419d428adc1986e998c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhaseTrigger: {fileID: 669058781}
-  OppositeWordOff: {fileID: 1338348823}
+  objectsToActivate:
+  - {fileID: 1435794874}
+  objectsToDeactivate:
+  - {fileID: 1338348823}
+  - {fileID: 1761481789}
   backToHub: 0
   replaceSentence: 0
   sentence: Dank Memes
@@ -13118,8 +13121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f05cdbbc9419d428adc1986e998c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhaseTrigger: {fileID: 0}
-  OppositeWordOff: {fileID: 0}
+  objectsToActivate: []
+  objectsToDeactivate: []
   backToHub: 0
   replaceSentence: 0
   sentence: Melts Steel bbeams
@@ -16381,8 +16384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f05cdbbc9419d428adc1986e998c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhaseTrigger: {fileID: 669058781}
-  OppositeWordOff: {fileID: 1036123065}
+  objectsToActivate:
+  - {fileID: 1435794874}
+  objectsToDeactivate:
+  - {fileID: 1036123065}
+  - {fileID: 1761481789}
   backToHub: 0
   replaceSentence: 0
   sentence: Hey Man
@@ -16975,6 +16981,35 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17, y: 4.14, z: 1.19}
   m_Center: {x: -0.3, y: -0.36, z: 0}
+--- !u!1 &1435794874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1435794875}
+  m_Layer: 0
+  m_Name: Change_Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1435794875
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1435794874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 154.65651, y: 15.957882, z: -13.567053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 669058782}
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
 --- !u!1001 &1443207257
 Prefab:
   m_ObjectHideFlags: 0
@@ -20298,7 +20333,7 @@ RectTransform:
   m_Children:
   - {fileID: 1821209601}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -20598,8 +20633,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1761481789}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.67224, y: 58.53642, z: 10.668643}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 159.67224, y: 58.53642, z: 10.668642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -22406,8 +22441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f05cdbbc9419d428adc1986e998c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhaseTrigger: {fileID: 0}
-  OppositeWordOff: {fileID: 0}
+  objectsToActivate: []
+  objectsToDeactivate: []
   backToHub: 0
   replaceSentence: 0
   sentence: Love harambe
@@ -22810,8 +22845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f05cdbbc9419d428adc1986e998c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PhaseTrigger: {fileID: 0}
-  OppositeWordOff: {fileID: 0}
+  objectsToActivate: []
+  objectsToDeactivate: []
   backToHub: 0
   replaceSentence: 0
   sentence: Love me
@@ -24641,70 +24676,6 @@ Prefab:
     - target: {fileID: 467512, guid: 5848fb406a81e414594d54a70047551d, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: distance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: throwForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: grabDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435454, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: showCursor
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422922, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 422922, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435454, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: movementSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11435454, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: sprintMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: throwHeight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: position.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: position.y
-      value: -0.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: position.z
-      value: 0.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 174282, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 198382, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 467512, guid: 5848fb406a81e414594d54a70047551d, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -169.033
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5848fb406a81e414594d54a70047551d, type: 2}

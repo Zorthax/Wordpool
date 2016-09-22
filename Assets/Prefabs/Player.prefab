@@ -33,7 +33,7 @@ GameObject:
   - 223: {fileID: 22361350}
   - 114: {fileID: 11490096}
   - 114: {fileID: 11423164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - 224: {fileID: 22452152}
   - 222: {fileID: 22295702}
   - 114: {fileID: 11405568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183628}
-  m_LocalRotation: {x: 0, y: -0.99905205, z: 0, w: -0.043532368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -128,10 +128,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110690}
-  m_LocalRotation: {x: 0, y: 0.99905205, z: 0, w: -0.043532368}
-  m_LocalPosition: {x: -0.35, y: 6.26, z: 0.03}
+  m_LocalRotation: {x: -0, y: -0.9951928, z: -0, w: 0.09793522}
+  m_LocalPosition: {x: 145.56, y: 2.8, z: -3.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -169.033, z: 0}
   m_Children:
   - {fileID: 422922}
   m_Father: {fileID: 0}
@@ -332,13 +332,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carriedObject: {fileID: 0}
-  throwForce: 3
-  distance: 2
-  smooth: 5
-  speed: 0
-  height: 0
+  position: {x: 0.4, y: -0.27, z: 0.67}
+  smooth: 20
+  speed: 20
+  throwForce: 15
+  throwHeight: 3
   regrabDelay: 0.5
-  grabDistance: 5
+  grabDistance: 3
   oneTimeSoundSource: {fileID: 0}
   soundSource: {fileID: 0}
 --- !u!114 &11435454
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef140c22124fa34fae0da430f12d35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showCursor: 1
+  showCursor: 0
   yOrigin: 0
   mouseXSensitivity: 4
   mouseYSensitivity: 2
@@ -363,8 +363,8 @@ MonoBehaviour:
   headBobbing: 0
   bobbingHeight: 0.1
   bobbingSpeed: 5
-  movementSpeed: 0.2
-  sprintMultiplier: 2
+  movementSpeed: 0.1
+  sprintMultiplier: 1.5
   jumpPower: 0.1
   speedInAirMultiplier: 1
   sprintInAir: 0
