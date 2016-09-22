@@ -29,15 +29,18 @@ public class wordsHitPool : MonoBehaviour
         //figure out what is going to happen with quit object
         if (obj.backToHub)
         {
+            SavePhases();
             obj.gameObject.SetActive(false);
             SceneManager.LoadSceneAsync(0);
             return;
         }
 
-        if (obj.PhaseTrigger != null)
-            obj.PhaseTrigger.SetActive(true);
-        if (obj.OppositeWordOff != null)
-            obj.OppositeWordOff.SetActive(false);
+        if (obj.objectsToActivate != null)
+            foreach (GameObject o in obj.objectsToActivate)
+                o.SetActive(true);
+        if (obj.objectsToDeactivate != null)
+            foreach (GameObject o in obj.objectsToDeactivate)
+                o.SetActive(false);
 
         if (obj.changeMaterial)
         {
@@ -144,5 +147,15 @@ public class wordsHitPool : MonoBehaviour
             col.gameObject.SetActive(false);
             Application.Quit();
         }*/
+    }
+
+    void SavePhases()
+    {
+        DaliPhases dali = FindObjectOfType<DaliPhases>();
+        if (dali != null)
+        {
+            SaveSystem save = FindObjectOfType<SaveSystem>();
+            save.SavePhases();
+        }
     }
 }

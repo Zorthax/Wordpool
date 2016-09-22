@@ -3,8 +3,8 @@ using System.Collections;
 
 public class WordPoolWord : MonoBehaviour {
 
-    public GameObject PhaseTrigger;
-    public GameObject OppositeWordOff;
+    public GameObject[] objectsToActivate;
+    public GameObject[] objectsToDeactivate;
     public bool backToHub = false;
     //public string triggerPhaseWord;
     public bool replaceSentence = false;
