@@ -11,4 +11,7 @@ public class WordPoolWord : MonoBehaviour {
     public string sentence;
     //public string otherWordOff;
 
+    public bool changeMaterial = false;
+    public Material newMaterial;
+
 }

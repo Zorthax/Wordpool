@@ -36,7 +36,16 @@ public class wordsHitPool : MonoBehaviour
 
         if (obj.PhaseTrigger != null)
             obj.PhaseTrigger.SetActive(true);
-        obj.OppositeWordOff.SetActive(false);
+        if (obj.OppositeWordOff != null)
+            obj.OppositeWordOff.SetActive(false);
+
+        if (obj.changeMaterial)
+        {
+            SwappableMaterial[] allObj;
+            allObj = Resources.FindObjectsOfTypeAll<SwappableMaterial>();
+            foreach (SwappableMaterial swap in allObj)
+                swap.ChangeMaterial(obj.newMaterial);
+        }
 
         if (obj.replaceSentence)
             note.sentence = obj.sentence;
