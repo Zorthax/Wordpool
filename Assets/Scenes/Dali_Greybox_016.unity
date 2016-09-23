@@ -8301,6 +8301,10 @@ Prefab:
       propertyPath: sentence
       value: Around me are
       objectReference: {fileID: 0}
+    - target: {fileID: 11490096, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: m_DynamicPixelsPerUnit
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5848fb406a81e414594d54a70047551d, type: 2}
   m_IsPrefabParent: 0
