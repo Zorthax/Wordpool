@@ -12291,7 +12291,7 @@ GameObject:
   - 54: {fileID: 1036123070}
   - 114: {fileID: 1036123072}
   m_Layer: 0
-  m_Name: Word_Objective_2 (3)
+  m_Name: Word_Objective_Spiral
   m_TagString: WordPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16280,7 +16280,7 @@ GameObject:
   - 54: {fileID: 1338348825}
   - 114: {fileID: 1338348830}
   m_Layer: 0
-  m_Name: Word_Objective_2 (4)
+  m_Name: Word_Objective_Building
   m_TagString: WordPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
