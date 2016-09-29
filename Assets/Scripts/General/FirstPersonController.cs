@@ -48,6 +48,7 @@ public class FirstPersonController : MonoBehaviour
     Vector3 previousForward;
     Vector3 newUp;
     Vector3 tempRight;
+    Quaternion newAngle;
     Rigidbody parentRB;
 
     public Vector3 gravityDirection = new Vector3(0, -1, 0);
@@ -228,10 +229,15 @@ public class FirstPersonController : MonoBehaviour
         }
 
         //Rotate with mouse
-        transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 1.0f);
+        //transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 1.0f);
 
-        cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
-            cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
+        //cameraTransform.localRotation = Quaternion.Euler(cameraTransform.localRotation.eulerAngles.x + mouseY * mouseYSensitivity,
+        //    cameraTransform.localRotation.eulerAngles.y + mouseX * mouseXSensitivity, 0);
+        cameraTransform.rotation = Quaternion.AngleAxis(mouseY * mouseYSensitivity, transform.right) * cameraTransform.rotation;
+        transform.rotation = Quaternion.AngleAxis(mouseX * mouseXSensitivity, transform.up) * transform.rotation;
+        
+
+
     }
 
     void ApplyVelocity()
@@ -286,6 +292,9 @@ public class FirstPersonController : MonoBehaviour
             previousRight = cameraTransform.right;
             gravityDirection = -other.transform.up;
 
+            tempRight = Vector3.Cross(transform.up, other.transform.up);
+            newAngle = Quaternion.AngleAxis(90, tempRight) * transform.rotation;
+
 
             changingCamera = true;
         }
@@ -294,8 +303,8 @@ public class FirstPersonController : MonoBehaviour
     void FixCamera()
     {
 
-        transform.up = Vector3.MoveTowards(transform.up, -gravityDirection, 0.1f);
-        if (transform.up == -gravityDirection) changingCamera = false;
+        transform.rotation = Quaternion.Lerp(transform.rotation, newAngle, 0.1f);
+        if (transform.rotation == newAngle) changingCamera = false;
 
     }
 }
