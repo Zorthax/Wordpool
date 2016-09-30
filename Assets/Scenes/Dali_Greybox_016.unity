@@ -5090,6 +5090,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: 'roses. In the distance are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &103369724
@@ -8752,6 +8753,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: trees.
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &160471051
@@ -18212,6 +18214,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: 'faces. On the shores are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &332754163
@@ -34213,6 +34216,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: 'faces. On the shores are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &612426333
@@ -38447,6 +38451,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: trees.
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &676074504
@@ -47304,6 +47309,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: scissors.
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &828305852
@@ -58775,8 +58781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOfScreen: 0
-  paintingWidth: 400
-  paintingHeight: 400
+  paintingWidth: 100
+  paintingHeight: 100
   savedTexture: {fileID: 0}
 --- !u!4 &1047680755
 Transform:
@@ -60800,6 +60806,57 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1072776662}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1072860639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1072860641}
+  - 114: {fileID: 1072860640}
+  m_Layer: 0
+  m_Name: Dali Phases
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1072860640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1072860639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b69035d3d4c9f43988630927830d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changingObjects:
+  - {fileID: 1000212740}
+  - {fileID: 1546780850}
+  - {fileID: 256267704}
+  - {fileID: 1644625030}
+  - {fileID: 1767448950}
+  - {fileID: 1743796215}
+  - {fileID: 1626682329}
+  - {fileID: 1729260846}
+  - {fileID: 102141593}
+  - {fileID: 1935081252}
+--- !u!4 &1072860641
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1072860639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -15.703081, y: 1.4947318, z: 3.3140345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1 &1072876297
 GameObject:
   m_ObjectHideFlags: 0
@@ -64243,6 +64300,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: scissors.
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!54 &1145415378
@@ -87776,6 +87834,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: 'butterflies. On the shores are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &1565617819
@@ -106250,6 +106309,7 @@ MonoBehaviour:
   backToHub: 1
   replaceSentence: 0
   sentence: 'clocks. In the distance are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &1904331969
@@ -107923,6 +107983,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: 'butterflies. On the shores are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!1 &1934920399
@@ -108006,6 +108067,7 @@ MonoBehaviour:
   backToHub: 0
   replaceSentence: 0
   sentence: 'clocks. In the distance are '
+  respawnAfterWordpool: 0
   changeMaterial: 0
   newMaterial: {fileID: 0}
 --- !u!65 &1935081255

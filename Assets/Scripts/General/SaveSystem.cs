@@ -11,12 +11,15 @@ public class SaveSystem : MonoBehaviour {
 
     static bool searchForPaintings;
     static bool setTexturesFirstTime = true;
+    static bool inHubWorld = false;
 
     const int saveSlots = 4;
-    int currentSave = 0;
+    static int currentSave = 0;
+    static int currentLoad = 0;
+    public static bool readyToSave;
 
     static Texture2D[] daliTextures;
-    static bool[] daliPhases;
+    static bool[,] daliPhases;
     static GameObject daliObject;
     GameObject[] daliPaintings;
 
@@ -24,7 +27,8 @@ public class SaveSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start ()
-    {      
+    {
+        inHubWorld = IsInHubWorld();
         if (saveSystem == null)
         {
             saveSystem = this;
@@ -35,9 +39,12 @@ public class SaveSystem : MonoBehaviour {
         }
         DontDestroyOnLoad(gameObject);
         daliObject = GameObject.Find("Dali Phases");
-        if (daliObject != null)
-            daliObject.GetComponent<DaliPhases>().LoadPhases(daliPhases);
-
+        if (daliObject != null && readyToSave && daliPhases != null)
+        {
+            Debug.Log("Loading objects in dali level");
+            daliObject.GetComponent<DaliPhases>().LoadPhases(daliPhases, currentSave);
+            readyToSave = false;
+        }
 
         searchForPaintings = true;   
     }
@@ -45,6 +52,7 @@ public class SaveSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        //Debug.Log("Current Save Slot: " + currentSave);
         StartCoroutine(What());
 
         if (searchForPaintings)
@@ -74,6 +82,8 @@ public class SaveSystem : MonoBehaviour {
             }
             tex.Apply();
             savedTexture = tex;
+            if (currentSave < 0)
+                ShiftSaves();
         }
     }
 
@@ -115,9 +125,10 @@ public class SaveSystem : MonoBehaviour {
         {
             if (gb.GetComponent<DaliPainting>() != null)
             {
-                Debug.Log("Set dali painting");
-                daliPaintings[i] = gb;
-                i++;
+                //Debug.Log("Set dali painting");
+                //daliPaintings[i] = gb;
+                //i++;
+                daliPaintings[gb.GetComponent<DaliPainting>().index] = gb;
             }
         }
         PaintingTextures();
@@ -140,7 +151,49 @@ public class SaveSystem : MonoBehaviour {
 
     public void SavePhases()
     {
+        
         if (daliObject != null)
-            daliPhases = daliObject.GetComponent<DaliPhases>().SavePhases();
+        {
+            if (daliPhases == null)
+            {
+                Debug.Log("Resetting save array");
+                daliPhases = new bool[saveSlots, daliObject.GetComponent<DaliPhases>().SavePhases().Length];
+            }
+            bool[] phases = daliObject.GetComponent<DaliPhases>().SavePhases();
+            for (int i = 0; i < phases.Length; i++)
+                daliPhases[currentSave, i] = phases[i];
+        }
+    }
+
+    bool IsInHubWorld()
+    {
+        DaliDoor door = FindObjectOfType<DaliDoor>();
+        if (door != null)
+            return true;
+        return false;
+    }
+
+    public static void SetLoadIndex(int index)
+    {
+        currentSave = index;
+    }
+
+    void ShiftSaves()
+    {
+        currentSave = 0;
+        for (int i = 0; i < saveSlots; i++)
+        {
+            if (i > 0)
+            {
+                if (daliTextures[i - 1] != null)
+                {
+                    daliTextures[i] = daliTextures[i - 1];
+                    
+                    //Move each save up
+                    for (int j = 0; j < daliPhases.GetLength(i); i++)
+                        daliPhases[currentSave, j] = daliPhases[currentSave - 1, j];
+                }
+            }
+        }    
     }
 }

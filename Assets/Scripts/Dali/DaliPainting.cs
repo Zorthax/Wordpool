@@ -1,32 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DaliPainting : MonoBehaviour {
+public class DaliPainting : DaliDoor
+{
+    public int index = 0;
 
-    public float distance = 3;
-
-    Collider col;
-
-	// Use this for initialization
-	void Start ()
+    public override void OnLoad()
     {
-        col = GetComponent<Collider>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (Input.GetButtonDown("Pick Up"))
-        {
-            RaycastHit[] all = Physics.RaycastAll(Camera.main.transform.position, Camera.main.transform.forward, distance);
-
-            foreach (RaycastHit h in all)
-            {
-                if (h.transform == transform)
-                {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-                }
-            }
-        }
-	}
+        SaveSystem.readyToSave = true;
+        SaveSystem.SetLoadIndex(index);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
 }

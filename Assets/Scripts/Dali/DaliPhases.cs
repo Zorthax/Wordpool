@@ -41,11 +41,11 @@ public class DaliPhases : MonoBehaviour {
         return phases;
     }
 
-    public void LoadPhases(bool[] phases)
+    public void LoadPhases(bool[,] phases, int index)
     {
-        for (int i = 0; i < phases.Length; i++)
+        for (int i = 0; i < changingObjects.Length; i++)
         {
-            changingObjects[i].SetActive(phases[i]);
+            changingObjects[i].SetActive(phases[index, i]);
         }
     }
 }

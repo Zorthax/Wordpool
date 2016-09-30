@@ -55,7 +55,8 @@ public class wordsHitPool : MonoBehaviour
         else
             note.sentence += obj.sentence;
 
-        col.gameObject.SetActive(false);
+        if (!obj.respawnAfterWordpool)
+            col.gameObject.SetActive(false);
 
         if (player.GetComponent<PickupObject>().carriedObject != null)
             player.GetComponent<PickupObject>().DropObject();
