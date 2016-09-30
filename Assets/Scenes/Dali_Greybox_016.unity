@@ -5086,7 +5086,7 @@ MonoBehaviour:
   objectsToActivate:
   - {fileID: 1729260846}
   objectsToDeactivate:
-  - {fileID: 1900837343}
+  - {fileID: 1935081252}
   backToHub: 0
   replaceSentence: 0
   sentence: 'roses. In the distance are '
@@ -106141,7 +106141,7 @@ GameObject:
   - 65: {fileID: 1900837345}
   - 114: {fileID: 1900837350}
   m_Layer: 0
-  m_Name: Clock
+  m_Name: Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107969,7 +107969,7 @@ GameObject:
   - 65: {fileID: 1935081255}
   - 114: {fileID: 1935081254}
   m_Layer: 0
-  m_Name: Clock (1)
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
