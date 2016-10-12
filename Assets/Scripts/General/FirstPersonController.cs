@@ -96,10 +96,18 @@ public class FirstPersonController : MonoBehaviour
     {
         //Keep camera at player position
         cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.05f);
-
-        if (!grounded && !canJump && !onSlope && resetDelay > 0) { resetDelay -= Time.deltaTime; }
-        else if (grounded || canJump || onSlope) { resetDelay = timeUntilGravityReset; }
-        else { gravityDirection = (new Vector3(0, -1, 0)); }
+        if (!changingCamera && Vector3.Dot(transform.up, new Vector3(0, 1, 0)) < 1.0f)
+        {
+            if (!grounded && !canJump && !onSlope && resetDelay > 0) { resetDelay -= Time.deltaTime; }
+            else if (grounded || canJump || onSlope) { resetDelay = timeUntilGravityReset; }
+            else
+            {
+                tempRight = Vector3.Cross(transform.up, new Vector3(0, 1, 0));
+                newAngle = Quaternion.AngleAxis(90, tempRight) * transform.rotation;
+                changingCamera = true; gravityDirection = (new Vector3(0, -1, 0));
+                resetDelay = timeUntilGravityReset;
+            }
+        }
     }
 
     public Vector3 CameraBobHeight()
