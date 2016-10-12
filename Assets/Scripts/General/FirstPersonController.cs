@@ -16,6 +16,7 @@ public class FirstPersonController : MonoBehaviour
     public bool headBobbing;
     public float bobbingHeight = 0.5f;
     public float bobbingSpeed = 5;
+    public float transitionSpeed = 0.1f;
 
     [Space(5)]
     [Header("Movement Variables")]
@@ -79,6 +80,7 @@ public class FirstPersonController : MonoBehaviour
         rb.velocity = Vector3.zero;
         if (!changingCamera)
         {
+            gravityDirection = -transform.up;
             GroundCheck();
             CameraMovement();
             PlayerMovement();
@@ -286,7 +288,7 @@ public class FirstPersonController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Gravity Wall" && !changingCamera && transform.up != other.transform.up)
+        if (other.transform.tag == "Gravity Wall" && !changingCamera && Vector3.Dot(transform.up, other.transform.up) < 0.9f)
         {
             previousUp = transform.up;
             previousRight = cameraTransform.right;
@@ -303,8 +305,10 @@ public class FirstPersonController : MonoBehaviour
     void FixCamera()
     {
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, newAngle, 0.1f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, newAngle, transitionSpeed);
         if (transform.rotation == newAngle) changingCamera = false;
 
+        if (!changingCamera)
+            gravityDirection = -transform.up;
     }
 }
