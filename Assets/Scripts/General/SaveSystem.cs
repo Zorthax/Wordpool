@@ -35,6 +35,7 @@ public class SaveSystem : MonoBehaviour {
         }
         else if (saveSystem != this)
         {
+            searchForPaintings = true;
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
@@ -46,7 +47,7 @@ public class SaveSystem : MonoBehaviour {
             readyToSave = false;
         }
 
-        searchForPaintings = true;   
+           
     }
 	
 	// Update is called once per frame
