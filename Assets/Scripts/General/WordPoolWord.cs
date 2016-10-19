@@ -15,14 +15,23 @@ public class WordPoolWord : MonoBehaviour {
     public Material newMaterial;
 
     Vector3 originalPosition;
+    GameObject glow;
 
     void Start()
     {
         originalPosition = transform.position;
+        glow = Instantiate(Resources.Load("Pickupable Light") as GameObject, transform) as GameObject;
+        
+    }
+
+    void Update()
+    {
+        glow.transform.localPosition = Vector3.zero;
     }
 
     public void Respawn()
     {
+        
         transform.position = originalPosition;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
