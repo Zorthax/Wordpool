@@ -22,6 +22,7 @@ GameObject:
   - 33: {fileID: 33000013911040246}
   - 23: {fileID: 23000011448532156}
   - 65: {fileID: 65000013148853782}
+  - 65: {fileID: 65000012943668478}
   m_Layer: 0
   m_Name: Moving Rose
   m_TagString: Untagged
@@ -78,6 +79,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011123433778}
   m_Mesh: {fileID: 4300000, guid: ec9eda480bcad9241bc18913417c871f, type: 3}
+--- !u!65 &65000012943668478
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011123433778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3115551, y: 0.5, z: 1.2}
+  m_Center: {x: 0.015425891, y: 5.7, z: -0.009032965}
 --- !u!65 &65000013148853782
 BoxCollider:
   m_ObjectHideFlags: 1
