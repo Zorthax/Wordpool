@@ -20,7 +20,7 @@ Shader "Custom/Hatching" {
 	sampler2D _Hatch3;
 	sampler2D _Hatch4;
 	sampler2D _Hatch5;
-	half4 _Color;
+	float4 _Color;
 
 	half4 LightingSimpleLambert(inout SurfaceOutput s, half3 lightDir, half atten)
 	{
@@ -29,7 +29,7 @@ Shader "Custom/Hatching" {
 
 		half NdotL = dot(s.Normal, lightDir);
 		half diff = NdotL;// * 0.75 + 0.25;
-		half4 c;
+		float4 c = Vector(1, 1, 1, 1);
 
 		half lightColor = _LightColor0.r * 0.3 + _LightColor0.g * 0.59 + _LightColor0.b * 0.11;
 		half intensity = lightColor * (diff * atten * 2);
