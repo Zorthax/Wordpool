@@ -32,6 +32,7 @@ public class FirstPersonController : MonoBehaviour
 
     public float timeUntilGravityReset = 2;
     float resetDelay;
+    public float maximumSlopeAngle = 60;
 
 
     float cameraYAngle;
@@ -44,11 +45,8 @@ public class FirstPersonController : MonoBehaviour
     float upMovement;
     float zMovement;
     bool changingCamera;
-    Vector3 previousUp;
-    Vector3 previousRight;
-    Vector3 previousForward;
-    Vector3 newUp;
     Vector3 tempRight;
+    Vector3 walkDirection;
     Quaternion newAngle;
     Rigidbody parentRB;
 
@@ -138,18 +136,30 @@ public class FirstPersonController : MonoBehaviour
         float distToGround = 1.01f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
         canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * (1.0f + (jumpPower * 5)), 1, QueryTriggerInteraction.Ignore);
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 2.0f, 1, QueryTriggerInteraction.Ignore);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 4.0f, 1, QueryTriggerInteraction.Ignore);
 
         onSlope = false;
         foreach (RaycastHit h in hits)
         {
-            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= 60 && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
+            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= maximumSlopeAngle && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
             {
                 Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
                 onSlope = true;
                 break;
             }
         }
+        //Slope checking
+        Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
+        RaycastHit hit;
+        if (!onSlope && Physics.Raycast(knee, walkDirection, out hit, 2.0f)) //cast in direction of movement
+        {
+            if (Mathf.Abs(Vector3.Angle(transform.up, hit.normal)) <= maximumSlopeAngle && Mathf.Abs(Vector3.Angle(transform.up, hit.normal)) > 5) //check angle of object hit by raycast
+            {
+                onSlope = true;
+                //rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
+            }
+        }
+        //Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f
 
         //Move towards platforms
         if (!grounded)
@@ -209,16 +219,7 @@ public class FirstPersonController : MonoBehaviour
         }
         ApplyVelocity();
 
-        //Slope checking
-        Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
-        RaycastHit hit;
-        if (Physics.Raycast(knee, rb.velocity, out hit, 1.0f)) //cast in direction of movement
-        {
-            if (Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f) //check angle of object hit by raycast
-            {
-                rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
-            }
-        }
+        
     }
 
     void CameraMovement()
@@ -266,6 +267,8 @@ public class FirstPersonController : MonoBehaviour
 
         //rb.velocity = sideMovement + forwardMovement + yMovement + (gravityDirection * gravity);  
         transform.position += sideMovement + forwardMovement + yMovement + (-gravityDirection * upMovement);// + (gravityDirection * gravity);
+
+        walkDirection = sideMovement + forwardMovement;
     }
 
     Vector3 CurrentUpVelocity()
@@ -298,8 +301,6 @@ public class FirstPersonController : MonoBehaviour
     {
         if (other.transform.tag == "Gravity Wall" && !changingCamera && Vector3.Dot(transform.up, other.transform.up) < 0.9f)
         {
-            previousUp = transform.up;
-            previousRight = cameraTransform.right;
             gravityDirection = -other.transform.up;
 
             tempRight = Vector3.Cross(transform.up, other.transform.up);
