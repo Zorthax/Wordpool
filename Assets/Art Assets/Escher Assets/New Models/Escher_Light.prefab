@@ -23,7 +23,7 @@ GameObject:
   - 23: {fileID: 23000012667657304}
   - 64: {fileID: 64000013810288560}
   m_Layer: 0
-  m_Name: polySurface4191
+  m_Name: Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +93,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1000013321612270
 GameObject:
@@ -127,7 +127,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000013682079918
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -207,7 +207,8 @@ Transform:
   m_LocalPosition: {x: 4.82947e-16, y: -0.15076569, z: 5.0911393}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 4000012807008166}
   m_Father: {fileID: 4000013458309756}
   m_RootOrder: 1
 --- !u!4 &4000012432402688
@@ -217,12 +218,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012238991184}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 239.821, y: 28.702, z: -175.01}
+  m_LocalPosition: {x: 242.064, y: 28.73, z: -175.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013458309756}
-  - {fileID: 4000012807008166}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000012760554376
@@ -245,14 +245,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013682079918}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5671, z: 0.0023}
+  m_LocalPosition: {x: 0, y: 0.7178662, z: -5.0888352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013950857478}
   - {fileID: 4000012760554376}
-  m_Father: {fileID: 4000012432402688}
-  m_RootOrder: 1
+  m_Father: {fileID: 4000011646349356}
+  m_RootOrder: 0
 --- !u!4 &4000013458309756
 Transform:
   m_ObjectHideFlags: 1
@@ -442,7 +442,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b194c71ff8f6db140a1d0e42366c9850, type: 3}
   m_Controller: {fileID: 0}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -458,13 +458,13 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 1}
+  m_Color: {r: 0.8308824, g: 0.8308824, b: 0.8308824, a: 1}
   m_Intensity: 2.01
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -478,7 +478,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1.41
   m_ShadowRadius: 0
@@ -492,5 +492,5 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4286611584
-  m_Size: 0.1
+    rgba: 4288453788
+  m_Size: 0.2
