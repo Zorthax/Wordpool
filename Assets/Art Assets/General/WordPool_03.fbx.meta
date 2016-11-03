@@ -749,6 +749,7 @@ ModelImporter:
     2300198: polySurface449
     2300200: polySurface450
     2300202: polySurface451
+    2300204: //RootNode
     3300000: polySurface350
     3300002: polySurface351
     3300004: polySurface352
@@ -851,6 +852,7 @@ ModelImporter:
     3300198: polySurface449
     3300200: polySurface450
     3300202: polySurface451
+    3300204: //RootNode
     4300000: polySurface350
     4300002: polySurface351
     4300004: polySurface352
@@ -953,6 +955,7 @@ ModelImporter:
     4300198: polySurface449
     4300200: polySurface450
     4300202: polySurface451
+    4300204: WordPool_01
   materials:
     importMaterials: 1
     materialName: 0
