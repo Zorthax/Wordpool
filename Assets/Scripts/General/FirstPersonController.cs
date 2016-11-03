@@ -35,6 +35,7 @@ public class FirstPersonController : MonoBehaviour
     public float maximumSlopeAngle = 60;
 
 
+    Vector3 constantScale;
     float cameraYAngle;
     bool grounded;
     bool onSlope;
@@ -70,6 +71,7 @@ public class FirstPersonController : MonoBehaviour
 
         upMovement = 0;
         resetDelay = timeUntilGravityReset;
+        constantScale = transform.lossyScale;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -93,6 +95,8 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        if (transform.parent == null) transform.localScale = constantScale;
+        
         //Keep camera at player position
         cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.05f);
         if (!changingCamera && Vector3.Dot(transform.up, new Vector3(0, 1, 0)) < 1.0f)
