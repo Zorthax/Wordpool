@@ -21,6 +21,7 @@ public class SaveSystem : MonoBehaviour {
 
     static Texture2D[] daliTextures;
     static bool[,] daliPhases;
+    static bool daliPhasesSet;
     static GameObject daliObject;
     GameObject[] daliPaintings;
 
@@ -165,7 +166,7 @@ public class SaveSystem : MonoBehaviour {
     public void SavePhases()
     {
         
-        if (daliObject != null)
+        if (daliObject != null && currentSave > 0)
         {
             if (daliPhases == null)
             {
@@ -198,7 +199,7 @@ public class SaveSystem : MonoBehaviour {
         {
             if (i > 0)
             {
-                if (daliTextures[i - 1] != null)
+                if (daliTextures[i - 1] != null && daliPhases != null)
                 {
                     daliTextures[i] = daliTextures[i - 1];
                     
