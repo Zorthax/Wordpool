@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.57217014, g: 0.7348543, b: 0.7871093, a: 1}
+  m_IndirectSpecularColor: {r: 0.57289183, g: 0.736602, b: 0.7871093, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6528,8 +6528,8 @@ Rigidbody:
   m_GameObject: {fileID: 102141593}
   serializedVersion: 2
   m_Mass: 5
-  m_Drag: 0.5
-  m_AngularDrag: 0.5
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -10687,6 +10687,14 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 2088932, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11427430, guid: 5848fb406a81e414594d54a70047551d, type: 2}
+      propertyPath: smooth
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5848fb406a81e414594d54a70047551d, type: 2}
   m_IsPrefabParent: 0
@@ -10856,8 +10864,8 @@ Rigidbody:
   m_GameObject: {fileID: 159552247}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -21961,8 +21969,8 @@ Rigidbody:
   m_GameObject: {fileID: 331143138}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -26202,8 +26210,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 469863728}
-  m_Father: {fileID: 1047680755}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -33578,8 +33586,8 @@ Rigidbody:
   m_GameObject: {fileID: 610255857}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -36016,8 +36024,8 @@ Rigidbody:
   m_GameObject: {fileID: 675425493}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -43354,8 +43362,8 @@ Rigidbody:
   m_GameObject: {fileID: 828091475}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -55391,8 +55399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOfScreen: 0
-  paintingWidth: 100
-  paintingHeight: 100
+  paintingWidth: 500
+  paintingHeight: 500
   savedTexture: {fileID: 0}
 --- !u!4 &1047680755
 Transform:
@@ -55404,8 +55412,7 @@ Transform:
   m_LocalPosition: {x: 259.41782, y: 24.621546, z: 174.60985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 428469880}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
 --- !u!1 &1047695591
@@ -60592,8 +60599,8 @@ Rigidbody:
   m_GameObject: {fileID: 1145415371}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -69503,7 +69510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e6551348c377d1499e3db4f244694d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenshotCamera: {fileID: 0}
+  screenshotCamera: {fileID: 344638416}
 --- !u!1001 &1384104958
 Prefab:
   m_ObjectHideFlags: 0
@@ -81852,8 +81859,8 @@ Rigidbody:
   m_GameObject: {fileID: 1564766133}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -106524,7 +106531,7 @@ GameObject:
   - 65: {fileID: 1900837345}
   - 114: {fileID: 1900837350}
   m_Layer: 0
-  m_Name: Reset
+  m_Name: Leave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108402,8 +108409,8 @@ Rigidbody:
   m_GameObject: {fileID: 1934089895}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -108512,8 +108519,8 @@ Rigidbody:
   m_GameObject: {fileID: 1935081252}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.05
-  m_AngularDrag: 0.05
+  m_Drag: 1
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
