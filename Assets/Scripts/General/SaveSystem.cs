@@ -195,20 +195,18 @@ public class SaveSystem : MonoBehaviour {
     void ShiftSaves()
     {
         currentSave = 0;
-        for (int i = 0; i < saveSlots; i++)
+        for (int i = saveSlots - 2; i >= 0; i--)
         {
-            if (i > 0)
+            if (daliTextures[i] != null && daliPhases != null)
             {
-                if (daliTextures[i - 1] != null && daliPhases != null)
-                {
-                    daliTextures[i] = daliTextures[i - 1];
-                    
-                    //Move each save up
-                    for (int j = 0; j < daliPhases.GetLength(i); i++)
-                        daliPhases[currentSave, j] = daliPhases[currentSave - 1, j];
-                }
+                daliTextures[i + 1] = daliTextures[i];
+                
+                //Move each save up
+                for (int j = 0; j < daliPhases.GetLength(i); j++)
+                    daliPhases[i + 1, j] = daliPhases[i, j];
             }
-        }    
+        }
+            
     }
 
     public void SetScreenshotCamera(Camera cam)
