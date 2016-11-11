@@ -4,15 +4,19 @@ using System.Collections;
 
 public class wordsHitPool : MonoBehaviour 
 {
+    public Camera screenshotCamera;
     GameObject player;
     //All note related stuff done by Adam
     NotepadScript note;
+
 
     // Use this for initialization
     void Start () 
 	{
         player = GameObject.FindGameObjectWithTag("Player");
         note = GameObject.FindGameObjectWithTag("Player").GetComponent<NotepadScript>();
+        SaveSystem save = FindObjectOfType<SaveSystem>();
+        save.SetScreenshotCamera(screenshotCamera);
     }
 	
 	// Update is called once per frame
@@ -30,8 +34,8 @@ public class wordsHitPool : MonoBehaviour
         if (obj.backToHub)
         {
             SavePhases();
+            
             obj.gameObject.SetActive(false);
-            SceneManager.LoadSceneAsync(0);
             return;
         }
 
@@ -157,6 +161,9 @@ public class wordsHitPool : MonoBehaviour
         {
             SaveSystem save = FindObjectOfType<SaveSystem>();
             save.SavePhases();
+            save.SetScreenshotCamera(screenshotCamera);
+            save.TakeScreenshot(0);
+            
         }
     }
 }

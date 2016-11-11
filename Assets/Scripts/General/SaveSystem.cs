@@ -4,6 +4,7 @@ using System.Collections;
 public class SaveSystem : MonoBehaviour {
 
     static SaveSystem saveSystem;
+    Camera screenshotCamera;
 
     public bool sizeOfScreen;
     public int paintingWidth;
@@ -20,6 +21,7 @@ public class SaveSystem : MonoBehaviour {
 
     static Texture2D[] daliTextures;
     static bool[,] daliPhases;
+    static bool daliPhasesSet;
     static GameObject daliObject;
     GameObject[] daliPaintings;
 
@@ -54,8 +56,8 @@ public class SaveSystem : MonoBehaviour {
 	void Update ()
     {
         //Debug.Log("Current Save Slot: " + currentSave);
-        StartCoroutine(What());
-
+        //daliCamera = Camera.main;
+        
         if (searchForPaintings)
         {
             SetTextures();
@@ -64,28 +66,39 @@ public class SaveSystem : MonoBehaviour {
         }
     }
 
-    IEnumerator What()
+    IEnumerator What(int levelIndex)
     {
-        if (Input.GetKeyDown("l"))
+        Camera cam = Camera.main;
+        screenshotCamera.gameObject.SetActive(true);
+        cam.gameObject.SetActive(false);
+        screenshotCamera.gameObject.tag = "MainCamera";
+        yield return new WaitForEndOfFrame();
+        Texture2D tex;
+        if (!sizeOfScreen)
         {
-
-            yield return new WaitForEndOfFrame();
-            Texture2D tex;
-            if (!sizeOfScreen)
-            {
-                tex = new Texture2D(paintingWidth, paintingHeight, TextureFormat.RGB24, false);
-                tex.ReadPixels(new Rect(Screen.width / 2 - paintingWidth / 2, Screen.height / 2 - paintingHeight / 2, paintingWidth, paintingHeight), 0, 0, false);
-            }
-            else
-            {
-                tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-                tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false);
-            }
-            tex.Apply();
-            savedTexture = tex;
-            if (currentSave < 0)
-                ShiftSaves();
+            tex = new Texture2D(paintingWidth, paintingHeight, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(Screen.width / 2 - paintingWidth / 2, Screen.height / 2 - paintingHeight / 2, paintingWidth, paintingHeight), 0, 0, false);
         }
+        else
+        {
+            tex = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0, false);
+        }
+        tex.Apply();
+        savedTexture = tex;
+        if (currentSave < 0)
+            ShiftSaves();
+        cam.gameObject.SetActive(true);
+        screenshotCamera.gameObject.SetActive(false);
+        cam.gameObject.tag = "MainCamera";
+
+        Application.LoadLevel(levelIndex);
+           
+    }
+
+    public void TakeScreenshot(int levelIndex)
+    {
+        StartCoroutine(What(levelIndex));
     }
 
     void SetTextures()
@@ -153,7 +166,7 @@ public class SaveSystem : MonoBehaviour {
     public void SavePhases()
     {
         
-        if (daliObject != null)
+        if (daliObject != null && currentSave > 0)
         {
             if (daliPhases == null)
             {
@@ -161,7 +174,7 @@ public class SaveSystem : MonoBehaviour {
                 daliPhases = new bool[saveSlots, daliObject.GetComponent<DaliPhases>().SavePhases().Length];
             }
             bool[] phases = daliObject.GetComponent<DaliPhases>().SavePhases();
-            for (int i = 0; i < phases.Length; i++)
+            for (int i = 0; i < phases.Length; ++i)
                 daliPhases[currentSave, i] = phases[i];
         }
     }
@@ -186,7 +199,7 @@ public class SaveSystem : MonoBehaviour {
         {
             if (i > 0)
             {
-                if (daliTextures[i - 1] != null)
+                if (daliTextures[i - 1] != null && daliPhases != null)
                 {
                     daliTextures[i] = daliTextures[i - 1];
                     
@@ -196,5 +209,10 @@ public class SaveSystem : MonoBehaviour {
                 }
             }
         }    
+    }
+
+    public void SetScreenshotCamera(Camera cam)
+    {
+        screenshotCamera = cam;
     }
 }

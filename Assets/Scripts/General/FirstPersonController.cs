@@ -35,9 +35,11 @@ public class FirstPersonController : MonoBehaviour
     public float maximumSlopeAngle = 60;
 
 
+    Vector3 constantScale;
     float cameraYAngle;
     bool grounded;
     bool onSlope;
+    bool nearSlope;
     bool canJump;
     float bobEvening;
     float xMovement;
@@ -69,6 +71,7 @@ public class FirstPersonController : MonoBehaviour
 
         upMovement = 0;
         resetDelay = timeUntilGravityReset;
+        constantScale = transform.lossyScale;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -92,6 +95,8 @@ public class FirstPersonController : MonoBehaviour
 
     void Update()
     {
+        if (transform.parent == null) transform.localScale = constantScale;
+        
         //Keep camera at player position
         cameraTransform.localPosition = Vector3.MoveTowards(cameraTransform.localPosition, CameraBobHeight(), 0.05f);
         if (!changingCamera && Vector3.Dot(transform.up, new Vector3(0, 1, 0)) < 1.0f)
@@ -135,31 +140,35 @@ public class FirstPersonController : MonoBehaviour
         //Check if on ground
         float distToGround = 1.01f;
         grounded = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
-        canJump = Physics.Raycast(transform.position, gravityDirection, distToGround * (1.0f + (jumpPower * 5)), 1, QueryTriggerInteraction.Ignore);
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 4.0f, 1, QueryTriggerInteraction.Ignore);
+        
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, gravityDirection, distToGround * 2.0f, 1, QueryTriggerInteraction.Ignore);
 
+        //Check if on slopes
         onSlope = false;
+        nearSlope = false;
         foreach (RaycastHit h in hits)
         {
             if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= maximumSlopeAngle && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5)
             {
                 Debug.Log(Mathf.Abs(Vector3.Angle(transform.up, h.normal)));
+                distToGround = 2 - (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) / 90);
                 onSlope = true;
                 break;
             }
         }
-        //Slope checking
-        Vector3 knee = transform.position - MultiplyByGravity(0.7f); //height at which to raycast
-        RaycastHit hit;
-        if (!onSlope && Physics.Raycast(knee, walkDirection, out hit, 2.0f)) //cast in direction of movement
+        //Check if walking towards slope
+        Vector3 knee = transform.position + (gravityDirection); //height at which to raycast
+        RaycastHit[] kneeHits = Physics.RaycastAll(knee, walkDirection, 3.0f, 1, QueryTriggerInteraction.Ignore);
+        foreach(RaycastHit h in kneeHits) //cast in direction of movement
         {
-            if (Mathf.Abs(Vector3.Angle(transform.up, hit.normal)) <= maximumSlopeAngle && Mathf.Abs(Vector3.Angle(transform.up, hit.normal)) > 5) //check angle of object hit by raycast
+            if (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) <= maximumSlopeAngle && Mathf.Abs(Vector3.Angle(transform.up, h.normal)) > 5) //check angle of object hit by raycast
             {
-                onSlope = true;
-                //rb.velocity = new Vector3(rb.velocity.x * DoubleAbs(gravityDirection.x), rb.velocity.y * DoubleAbs(gravityDirection.y), rb.velocity.z * DoubleAbs(gravityDirection.z)); //Stop moving if angle is too steep
+                nearSlope = true;
+                distToGround = 2 - (Mathf.Abs(Vector3.Angle(transform.up, h.normal)) / 90);
+                break;
             }
         }
-        //Vector3.Dot(transform.up, hit.normal) < 1.0f && Vector3.Dot(transform.up, hit.normal) >= 0.1f
+
 
         //Move towards platforms
         if (!grounded)
@@ -181,23 +190,23 @@ public class FirstPersonController : MonoBehaviour
             }
         }
 
+        canJump = Physics.Raycast(transform.position, gravityDirection, distToGround, 1, QueryTriggerInteraction.Ignore);
+
     }
 
     void PlayerMovement()
     {
-        //Jumping
-
-        ///*if (grounded && !Input.GetButton("Jump")) yMovement = gravityDirection * 1.0f;
-        //else */if (grounded && Input.GetButtonDown("Jump")) yMovement = transform.up * jumpPower;
-        //else yMovement = CurrentUpVelocity();
 
         if (upMovement < -maxGravity) upMovement = -maxGravity;
 
-        if (!grounded && !onSlope) upMovement -= gravity;
-        else if (!canJump && onSlope && upMovement <= 0 && !Input.GetButton("Jump")) { upMovement -= gravity * 12; Debug.Log("Extra Gravity"); }
-        else upMovement = 0;
+        if (canJump) upMovement = 0;
+        else upMovement -= gravity;
 
-        if (canJump && Input.GetButton("Jump")) upMovement = jumpPower;
+        if (canJump && onSlope && (!nearSlope && walkDirection != Vector3.zero)) upMovement -= gravity * 10;
+
+        if (canJump && Input.GetButton("Jump")) { upMovement = jumpPower; Debug.Log("Jumped"); }
+
+
 
         //Walking
         xMovement = Input.GetAxis("Horizontal");
