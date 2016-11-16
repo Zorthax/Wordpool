@@ -160,10 +160,17 @@ public class wordsHitPool : MonoBehaviour
         if (dali != null)
         {
             SaveSystem save = FindObjectOfType<SaveSystem>();
-            save.SavePhases();
+            save.SaveDaliPhases();
             save.SetScreenshotCamera(screenshotCamera);
             save.TakeScreenshot(0);
-            
+        }
+        EscherPhases escher = FindObjectOfType<EscherPhases>();
+        if (escher != null)
+        {
+            SaveSystem save = FindObjectOfType<SaveSystem>();
+            save.SaveEscherPhases();
+            save.SetScreenshotCamera(screenshotCamera);
+            save.TakeScreenshot(0);
         }
     }
 }
