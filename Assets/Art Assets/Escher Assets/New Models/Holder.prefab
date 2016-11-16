@@ -88,8 +88,6 @@ GameObject:
   - 4: {fileID: 4000011488241966}
   - 33: {fileID: 33000010380034284}
   - 23: {fileID: 23000010838848518}
-  - 114: {fileID: 114000014258041330}
-  - 114: {fileID: 114000012866401674}
   m_Layer: 0
   m_Name: polySurface4190
   m_TagString: Untagged
@@ -173,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010574155348}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03137207, y: -0.0053215027, z: 5.0747375}
+  m_LocalPosition: {x: -0.089782715, y: 0.56404877, z: 1.3062744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -208,7 +206,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4bf8a57d7f4c38c4ab457e393ec1d2e6, type: 2}
+  - {fileID: 2100000, guid: 4735f65f93202614b97dabdc7b17e479, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -330,34 +328,12 @@ Light:
   m_BounceIntensity: 1.41
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114000012866401674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244200498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09b24f059e2f83a4c8aa9035af022fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000013178973484
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010574155348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09b24f059e2f83a4c8aa9035af022fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114000014258041330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013244200498}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09b24f059e2f83a4c8aa9035af022fb9, type: 3}

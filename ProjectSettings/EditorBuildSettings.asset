@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/HubWorld_Greybox.unity
+  - enabled: 1
+    path: Assets/Scenes/Dali_Greybox_020.unity
+  - enabled: 1
+    path: Assets/Scenes/Escher_Greybox.unity

@@ -20,12 +20,7 @@ public class SwappableMaterial : MonoBehaviour {
         Renderer rend = GetComponent<Renderer>();
         if (rend != null)
         {
-            Material[] temp = rend.materials;
-            for (int i = 0; i < rend.sharedMaterials.Length; i++)
-            {
-                temp[i] = mat;
-            }
-            rend.materials = temp;
+			rend.material = mat;
         }
         else
             Debug.Log("Can not change material due to missing renderer");
