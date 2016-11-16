@@ -103,14 +103,14 @@ public class SaveSystem : MonoBehaviour {
         savedTexture = tex;
         if (currentSave < 0)
         {
-            if (daliObject != null) ShiftDaliSaves();
-            if (escherObject != null) ShiftEscherSaves();
+            if (levelIndex == 0) { ShiftDaliSaves(); daliTextures[currentSave] = savedTexture; }
+            if (levelIndex == 1) { ShiftEscherSaves(); escherTextures[currentSave] = savedTexture; }
         }
         cam.gameObject.SetActive(true);
         screenshotCamera.gameObject.SetActive(false);
         cam.gameObject.tag = "MainCamera";
 
-        Application.LoadLevel(levelIndex);
+        Application.LoadLevel(0);
            
     }
 
@@ -138,13 +138,13 @@ public class SaveSystem : MonoBehaviour {
         }
 
 
-        if (savedTexture != null)
-        {
-            daliTextures[currentSave] = savedTexture;
-            savedTexture = null;
-            if (currentSave < saveSlots - 1) currentSave++;
-            else currentSave = 0;
-        }    
+        //if (savedTexture != null)
+        //{
+        //    daliTextures[currentSave] = savedTexture;
+        //    savedTexture = null;
+        //    if (currentSave < saveSlots - 1) currentSave++;
+        //    else currentSave = 0;
+        //}    
     }
 
     void SetPaintings()

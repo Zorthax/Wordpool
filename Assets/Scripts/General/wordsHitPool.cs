@@ -170,7 +170,7 @@ public class wordsHitPool : MonoBehaviour
             SaveSystem save = FindObjectOfType<SaveSystem>();
             save.SaveEscherPhases();
             save.SetScreenshotCamera(screenshotCamera);
-            save.TakeScreenshot(0);
+            save.TakeScreenshot(1);
         }
     }
 }
