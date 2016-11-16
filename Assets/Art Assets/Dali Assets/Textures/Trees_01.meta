@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< 86ebf7df27c394059b92eee90ed9de2a6e303c53
 guid: a2f3c6d4b3c90b443a54e7a2e7ef5539
 folderAsset: yes
 timeCreated: 1478841799
+=======
+guid: 40fb8b8ff56398449a94afaeba976fc8
+folderAsset: yes
+timeCreated: 1478841446
+>>>>>>> Changes to Dali level
 licenseType: Free
 DefaultImporter:
   userData: 
