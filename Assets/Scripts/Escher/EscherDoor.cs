@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DaliDoor : MonoBehaviour {
+public class EscherDoor : MonoBehaviour {
 
     public float distance = 3;
-    
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         TestLevelLoad();
     }
@@ -35,6 +36,6 @@ public class DaliDoor : MonoBehaviour {
     public virtual void OnLoad()
     {
         SaveSystem.SetLoadIndex(-1);
-        Application.LoadLevel(1);
+        Application.LoadLevel(2);
     }
 }

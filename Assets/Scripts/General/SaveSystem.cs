@@ -22,10 +22,18 @@ public class SaveSystem : MonoBehaviour {
     static Texture2D[] daliTextures;
     static bool[,] daliPhases;
     static bool daliPhasesSet;
-    static GameObject daliObject;
+    public GameObject daliObject;
+    static GameObject realDali;
     GameObject[] daliPaintings;
 
-    public Texture2D savedTexture;
+    static Texture2D[] escherTextures;
+    static bool[,] escherPhases;
+    static bool escherPhasesSet;
+    public GameObject escherObject;
+    static GameObject realEscher;
+    GameObject[] escherPaintings;
+
+    public static Texture2D savedTexture;
 
 	// Use this for initialization
 	void Start ()
@@ -40,16 +48,23 @@ public class SaveSystem : MonoBehaviour {
             searchForPaintings = true;
             Destroy(gameObject);
         }
+        realDali = daliObject;
+        realEscher = escherObject;
         DontDestroyOnLoad(gameObject);
-        daliObject = GameObject.Find("Dali Phases");
-        if (daliObject != null && readyToSave && daliPhases != null)
+        if (realDali != null && readyToSave && daliPhases != null)
         {
             Debug.Log("Loading objects in dali level");
-            daliObject.GetComponent<DaliPhases>().LoadPhases(daliPhases, currentSave);
+            realDali.GetComponent<DaliPhases>().LoadPhases(daliPhases, currentSave);
+            readyToSave = false;
+        }
+        else if (realEscher != null && readyToSave && escherPhases != null)
+        {
+            Debug.Log("Loading objects in dali level");
+            realEscher.GetComponent<EscherPhases>().LoadPhases(escherPhases, currentSave);
             readyToSave = false;
         }
 
-           
+
     }
 	
 	// Update is called once per frame
@@ -87,7 +102,10 @@ public class SaveSystem : MonoBehaviour {
         tex.Apply();
         savedTexture = tex;
         if (currentSave < 0)
-            ShiftSaves();
+        {
+            if (daliObject != null) ShiftDaliSaves();
+            if (escherObject != null) ShiftEscherSaves();
+        }
         cam.gameObject.SetActive(true);
         screenshotCamera.gameObject.SetActive(false);
         cam.gameObject.tag = "MainCamera";
@@ -105,16 +123,17 @@ public class SaveSystem : MonoBehaviour {
     {
         if (setTexturesFirstTime)
         {
-            Texture2D tex = new Texture2D(1, 1);
-            Color[] white = new Color[1] { new Color(0, 1, 1) };
-            tex.SetPixels(white);
-            tex.Apply();
-
+            //Texture2D tex = new Texture2D(1, 1);
+            //Color[] white = new Color[1] { new Color(0, 1, 1) };
+            //tex.SetPixels(white);
+            //tex.Apply();
+            //
             daliTextures = new Texture2D[saveSlots];
-            for (int i = 0; i < saveSlots; i++)
-            {
-                daliTextures[i] = tex;
-            }
+            escherTextures = new Texture2D[saveSlots];
+            //for (int i = 0; i < saveSlots; i++)
+            //{
+            //    daliTextures[i] = tex;
+            //}
             setTexturesFirstTime = false;
         }
 
@@ -135,7 +154,8 @@ public class SaveSystem : MonoBehaviour {
 
         int i = 0;
         daliPaintings = new GameObject[saveSlots];
-        foreach(GameObject gb in allPaintings)
+        escherPaintings = new GameObject[saveSlots];
+        foreach (GameObject gb in allPaintings)
         {
             if (gb.GetComponent<DaliPainting>() != null)
             {
@@ -143,6 +163,13 @@ public class SaveSystem : MonoBehaviour {
                 //daliPaintings[i] = gb;
                 //i++;
                 daliPaintings[gb.GetComponent<DaliPainting>().index] = gb;
+            }
+            else if (gb.GetComponent<EscherPainting>() != null)
+            {
+                //Debug.Log("Set dali painting");
+                //daliPaintings[i] = gb;
+                //i++;
+                escherPaintings[gb.GetComponent<EscherPainting>().index] = gb;
             }
         }
         PaintingTextures();
@@ -152,7 +179,7 @@ public class SaveSystem : MonoBehaviour {
     void PaintingTextures()
     {
         
-        for (int x = 0; x < daliPaintings.Length && daliPaintings[x] != null; ++x)
+        for (int x = 0; x < daliPaintings.Length && daliPaintings[x] != null && daliTextures[x] != null; ++x)
         {
             MeshRenderer mr = daliPaintings[x].GetComponent<MeshRenderer>();
             Destroy(mr.material);
@@ -160,22 +187,45 @@ public class SaveSystem : MonoBehaviour {
             mr.materials[0].mainTexture = daliTextures[x]; 
         }
 
-        
+        for (int x = 0; x < escherPaintings.Length && escherPaintings[x] != null && escherTextures[x] != null; ++x)
+        {
+            MeshRenderer mr = escherPaintings[x].GetComponent<MeshRenderer>();
+            Destroy(mr.material);
+            mr.materials = new Material[1];
+            mr.materials[0].mainTexture = escherTextures[x];
+        }
+
+
     }
 
-    public void SavePhases()
+    public void SaveDaliPhases()
     {
         
-        if (daliObject != null && currentSave > 0)
+        if (realDali != null && currentSave >= 0)
         {
             if (daliPhases == null)
             {
                 Debug.Log("Resetting save array");
-                daliPhases = new bool[saveSlots, daliObject.GetComponent<DaliPhases>().SavePhases().Length];
+                daliPhases = new bool[saveSlots, realDali.GetComponent<DaliPhases>().SavePhases().Length];
             }
-            bool[] phases = daliObject.GetComponent<DaliPhases>().SavePhases();
+            bool[] phases = realDali.GetComponent<DaliPhases>().SavePhases();
             for (int i = 0; i < phases.Length; ++i)
                 daliPhases[currentSave, i] = phases[i];
+        }
+    }
+
+    public void SaveEscherPhases()
+    {
+        if (realEscher != null && currentSave >= 0)
+        {
+            if (escherPhases == null)
+            {
+                Debug.Log("Resetting save array");
+                escherPhases = new bool[saveSlots, realEscher.GetComponent<EscherPhases>().SavePhases().Length];
+            }
+            bool[] phases = realEscher.GetComponent<EscherPhases>().SavePhases();
+            for (int i = 0; i < phases.Length; ++i)
+                escherPhases[currentSave, i] = phases[i];
         }
     }
 
@@ -192,21 +242,39 @@ public class SaveSystem : MonoBehaviour {
         currentSave = index;
     }
 
-    void ShiftSaves()
+    void ShiftDaliSaves()
     {
         currentSave = 0;
-        for (int i = saveSlots - 2; i >= 0; i--)
+        for (int i = saveSlots - 1; i > 0; i--)
         {
-            if (daliTextures[i] != null && daliPhases != null)
+            if (daliTextures[i - 1] != null && daliPhases != null)
             {
-                daliTextures[i + 1] = daliTextures[i];
-                
+                daliTextures[i] = daliTextures[i - 1];
+                int length = daliPhases.GetLength(1); //bug testing
+
                 //Move each save up
-                for (int j = 0; j < daliPhases.GetLength(i); j++)
-                    daliPhases[i + 1, j] = daliPhases[i, j];
+                for (int j = 0; j < length; j++)
+                    daliPhases[i, j] = daliPhases[i - 1, j];
+            }
+        }        
+    }
+
+    void ShiftEscherSaves()
+    {
+        currentSave = 0;
+        for (int i = saveSlots - 1; i > 0; i--)
+        {
+            if (escherTextures[i - 1] != null && escherPhases != null)
+            {
+                escherTextures[i] = escherTextures[i - 1];
+                int length = escherPhases.GetLength(1); //bug testing
+
+                //Move each save up
+                for (int j = 0; j < length; j++)
+                    escherPhases[i, j] = escherPhases[i - 1, j];
             }
         }
-            
+
     }
 
     public void SetScreenshotCamera(Camera cam)
