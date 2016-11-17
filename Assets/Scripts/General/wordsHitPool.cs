@@ -59,6 +59,8 @@ public class wordsHitPool : MonoBehaviour
         else
             note.sentence += obj.sentence;
 
+        note.ShowText();
+
         if (!obj.respawnAfterWordpool)
             col.gameObject.SetActive(false);
 

@@ -3,35 +3,56 @@ using System.Collections;
 
 public class NotepadScript : MonoBehaviour {
 
-    public Transform notepad;
-    public Vector3 position = new Vector3(-0.4f, -0.2f, 0.5f);
-    public float moveSpeed;
     public string sentence;
     public UnityEngine.UI.Text text;
+    public float fadeSpeed;
+    public float timeOnScreen;
+
+    bool fadingIn;
+    bool stay;
+    bool fadingOut;
+    float timer = 0;
+    Color c;
 
 	// Use this for initialization
 	void Start ()
     {
+        c = text.color;
+        c.a = 0;
+        fadingIn = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        /*Vector3 point = transform.position + new Vector3(position.z * transform.forward.x, position.y, position.z * transform.forward.z)
-            + new Vector3(position.x * transform.right.x, 0, position.x * transform.right.z);// + (GetComponent<FirstPersonController>().CameraBobHeight() / 3);
-        if (Vector3.Distance(notepad.position, point) > 0.1f)
-        {
-            notepad.position = Vector3.MoveTowards(notepad.position, point, 1.0f);
-        }
-        else
-        {
-            notepad.position = Vector3.MoveTowards(notepad.position, point, 0.01f);
-        }*/
-        if (Input.GetButton("Notepad"))
-            notepad.localPosition = Vector3.MoveTowards(notepad.localPosition, position, moveSpeed);
-        else notepad.localPosition = Vector3.MoveTowards(notepad.localPosition, new Vector3(position.x, -1, position.z), moveSpeed);
-        notepad.localRotation = Quaternion.Euler(0, 180, 0);
-
+        if (fadingIn) fadeIn();
+        if (stay) stayOnScreen();
+        if (fadingOut) fadeOut();
         text.text = sentence;
+        text.color = c;
+
+        if (Input.GetButtonDown("Notepad")) fadingIn = true;
 	}
+
+    void fadeIn()
+    {
+        c.a += Time.deltaTime * fadeSpeed;
+        if (c.a >= 1) { fadingIn = false; stay = true; }
+    }
+
+    void stayOnScreen()
+    {
+        timer += Time.deltaTime;
+        if (timer >= timeOnScreen) { stay = false; timer = 0; fadingOut = true; }
+    }
+
+    void fadeOut()
+    {
+        c.a -= Time.deltaTime * fadeSpeed;
+        if (c.a <= 0) { fadingOut = false; }
+    }
+
+    public void ShowText()
+    { fadingIn = true; }
+
 }
