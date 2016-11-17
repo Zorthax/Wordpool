@@ -160,7 +160,6 @@ public class wordsHitPool : MonoBehaviour
         if (dali != null)
         {
             SaveSystem save = FindObjectOfType<SaveSystem>();
-            save.SaveDaliPhases();
             save.SetScreenshotCamera(screenshotCamera);
             save.TakeScreenshot(0);
         }
@@ -168,7 +167,6 @@ public class wordsHitPool : MonoBehaviour
         if (escher != null)
         {
             SaveSystem save = FindObjectOfType<SaveSystem>();
-            save.SaveEscherPhases();
             save.SetScreenshotCamera(screenshotCamera);
             save.TakeScreenshot(1);
         }

@@ -34,6 +34,7 @@ public class SaveSystem : MonoBehaviour {
     GameObject[] escherPaintings;
 
     public static Texture2D savedTexture;
+    static bool[] savedPhases;
 
 	// Use this for initialization
 	void Start ()
@@ -101,11 +102,10 @@ public class SaveSystem : MonoBehaviour {
         }
         tex.Apply();
         savedTexture = tex;
-        if (currentSave < 0)
-        {
-            if (levelIndex == 0) { ShiftDaliSaves(); daliTextures[currentSave] = savedTexture; }
-            if (levelIndex == 1) { ShiftEscherSaves(); escherTextures[currentSave] = savedTexture; }
-        }
+
+        if (levelIndex == 0) { if (currentSave < 0) ShiftDaliSaves(); daliTextures[currentSave] = savedTexture; SaveDaliPhases(); }
+        if (levelIndex == 1) { if (currentSave < 0) ShiftEscherSaves(); escherTextures[currentSave] = savedTexture; SaveEscherPhases(); }
+
         cam.gameObject.SetActive(true);
         screenshotCamera.gameObject.SetActive(false);
         cam.gameObject.tag = "MainCamera";
@@ -200,14 +200,14 @@ public class SaveSystem : MonoBehaviour {
 
     public void SaveDaliPhases()
     {
-        
-        if (realDali != null && currentSave >= 0)
+        if (daliPhases == null)
         {
-            if (daliPhases == null)
-            {
-                Debug.Log("Resetting save array");
-                daliPhases = new bool[saveSlots, realDali.GetComponent<DaliPhases>().SavePhases().Length];
-            }
+            Debug.Log("Resetting save array");
+            daliPhases = new bool[saveSlots, realDali.GetComponent<DaliPhases>().SavePhases().Length];
+        }
+
+        if (realDali != null)
+        {
             bool[] phases = realDali.GetComponent<DaliPhases>().SavePhases();
             for (int i = 0; i < phases.Length; ++i)
                 daliPhases[currentSave, i] = phases[i];
@@ -216,13 +216,14 @@ public class SaveSystem : MonoBehaviour {
 
     public void SaveEscherPhases()
     {
-        if (realEscher != null && currentSave >= 0)
+        if (escherPhases == null)
         {
-            if (escherPhases == null)
-            {
-                Debug.Log("Resetting save array");
-                escherPhases = new bool[saveSlots, realEscher.GetComponent<EscherPhases>().SavePhases().Length];
-            }
+            Debug.Log("Resetting save array");
+            escherPhases = new bool[saveSlots, realEscher.GetComponent<EscherPhases>().SavePhases().Length];
+        }
+
+        if (realEscher != null)
+        {
             bool[] phases = realEscher.GetComponent<EscherPhases>().SavePhases();
             for (int i = 0; i < phases.Length; ++i)
                 escherPhases[currentSave, i] = phases[i];
