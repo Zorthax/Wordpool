@@ -23053,7 +23053,7 @@ MonoBehaviour:
   objectsToActivate:
   - {fileID: 1546780850}
   objectsToDeactivate:
-  - {fileID: 828091475}
+  - {fileID: 1145415371}
   backToHub: 0
   replaceSentence: 0
   sentence: trees. Complete
@@ -38891,7 +38891,7 @@ MonoBehaviour:
   objectsToActivate:
   - {fileID: 1000212740}
   objectsToDeactivate:
-  - {fileID: 0}
+  - {fileID: 621008640}
   backToHub: 0
   replaceSentence: 0
   sentence: scissors. Complete
@@ -63533,7 +63533,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 68aab9b87358b454394fe3ce76f65faf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 52f66f5d0c2f5f442bf99363f37362f8, type: 2}
+      objectReference: {fileID: 2100000, guid: b7553d3d2492fbe47b0cd4be2e9e602c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68aab9b87358b454394fe3ce76f65faf, type: 3}
   m_IsPrefabParent: 0
