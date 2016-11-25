@@ -12105,7 +12105,7 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 1000012953074904, guid: 1ee68786bec88a142b19ade0b834114b, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -12117,15 +12117,15 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010767371618, guid: 1ee68786bec88a142b19ade0b834114b, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010428717696, guid: 1ee68786bec88a142b19ade0b834114b, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010314891764, guid: 1ee68786bec88a142b19ade0b834114b, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -17160,6 +17160,10 @@ Prefab:
       propertyPath: m_Name
       value: Rose (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4000014031784426, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.73146677
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
   m_IsPrefabParent: 0
@@ -19916,6 +19920,10 @@ Prefab:
     - target: {fileID: 1000012964004666, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
       propertyPath: m_Name
       value: Moving Rose (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 5.782
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
@@ -29868,6 +29876,10 @@ Prefab:
       propertyPath: m_Name
       value: Moving Rose (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 5.794
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
   m_IsPrefabParent: 0
@@ -33946,7 +33958,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011731827144, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -107.3
+      value: -109
       objectReference: {fileID: 0}
     - target: {fileID: 4000011731827144, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -34013,6 +34025,10 @@ Prefab:
         type: 2}
       propertyPath: m_Size.z
       value: 1.1831819
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014031784426, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.71272767
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
@@ -47454,6 +47470,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4000014031784426, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.7240039
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
   m_IsPrefabParent: 0
@@ -49980,6 +50000,10 @@ Prefab:
     - target: {fileID: 1000012964004666, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
       propertyPath: m_Name
       value: Moving Rose (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 5.793
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
@@ -52581,7 +52605,7 @@ Prefab:
     - target: {fileID: 224000013217037262, guid: cb0efd1cb0543ca4ead068fd90ab2f7f,
         type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb0efd1cb0543ca4ead068fd90ab2f7f, type: 2}
@@ -61798,7 +61822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1743796216
 Transform:
   m_ObjectHideFlags: 0
@@ -62325,6 +62349,10 @@ Prefab:
       propertyPath: m_Name
       value: Moving Rose (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 5.806
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76fb94caf1553dd4f993e5acef28661d, type: 2}
   m_IsPrefabParent: 0
@@ -62765,7 +62793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1767448951
 Transform:
   m_ObjectHideFlags: 0
