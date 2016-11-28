@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Red_HatchingShader_Opaque
+  m_Name: HatchingHD
   m_Shader: {fileID: 4800000, guid: 06fd3a2c5ab571f42bfc0e83ac6db38c, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -49,36 +49,36 @@ Material:
         name: _Hatch0
       second:
         m_Texture: {fileID: 2800000, guid: 807edb824fdd2b34995a13a66e6581fd, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Hatch1
       second:
-        m_Texture: {fileID: 2800000, guid: ee860afef90004a44ad2689335a7b985, type: 3}
+        m_Texture: {fileID: 2800000, guid: f37d63363a9c87240aa56ed1af18e399, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Hatch2
       second:
-        m_Texture: {fileID: 2800000, guid: e8a422a2bbc10904fa94d5b8e5737065, type: 3}
+        m_Texture: {fileID: 2800000, guid: f37d63363a9c87240aa56ed1af18e399, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Hatch3
       second:
-        m_Texture: {fileID: 2800000, guid: ca1c0382232aa854f947b0a4987fc674, type: 3}
+        m_Texture: {fileID: 2800000, guid: f9e3b86d485d33d45b56edbbb977dca0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Hatch4
       second:
-        m_Texture: {fileID: 2800000, guid: 2f8d99505b21a094c9f4c6544d54c0fc, type: 3}
+        m_Texture: {fileID: 2800000, guid: dac89b77c65cbfb42acacf3b4dd8bacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Hatch5
       second:
-        m_Texture: {fileID: 2800000, guid: 1a9636cd7c28b5d44a4ff476cca112a3, type: 3}
+        m_Texture: {fileID: 2800000, guid: dac89b77c65cbfb42acacf3b4dd8bacf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -157,7 +157,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.24264705, g: 0.019625869, b: 0.019625869, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
